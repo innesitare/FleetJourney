@@ -12,7 +12,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleetJourney.CarPoolApi", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleetJourney.TripsApi", "FleetJourney.TripsApi\FleetJourney.TripsApi.csproj", "{B01D6854-53CF-42D9-B55C-D2066369B679}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleetJourney.IdentityApi", "FleetJourney.IdentityApi\FleetJourney.IdentityApi.csproj", "{DBCE8C43-2B9E-488A-BA79-A1548E080EC0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleetJourney.EmployeeApi", "FleetJourney.EmployeeApi\FleetJourney.EmployeeApi.csproj", "{DBCE8C43-2B9E-488A-BA79-A1548E080EC0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleetJourney.Infrastructure", "FleetJourney.Infrastructure\FleetJourney.Infrastructure.csproj", "{A255B27E-B4F6-4B2D-84EE-4EB881D60D26}"
 EndProject

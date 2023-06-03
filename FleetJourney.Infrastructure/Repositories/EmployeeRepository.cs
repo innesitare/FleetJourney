@@ -25,7 +25,7 @@ internal sealed class EmployeeRepository : IEmployeeRepository
         return _applicationDbContext.Employees;
     }
 
-    public async Task<Employee?> GetByIdAsync(Guid employeeId, CancellationToken cancellationToken)
+    public async Task<Employee?> GetAsync(Guid employeeId, CancellationToken cancellationToken)
     {
         var employee = await _applicationDbContext.Employees.FindAsync(new object?[] {employeeId}, cancellationToken);
 
@@ -62,7 +62,7 @@ internal sealed class EmployeeRepository : IEmployeeRepository
         return employee;
     }
 
-    public async Task<bool> DeleteByIdAsync(Guid employeeId, CancellationToken cancellationToken)
+    public async Task<bool> DeleteAsync(Guid employeeId, CancellationToken cancellationToken)
     {
         var employee = await _applicationDbContext.Employees.FindAsync(new object?[] {employeeId}, cancellationToken);
         if (employee is null)

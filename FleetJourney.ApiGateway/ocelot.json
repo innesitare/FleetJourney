@@ -5,7 +5,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "identity-api",
+          "Host": "employee-api",
           "Port": 8081
         }
       ],
@@ -17,7 +17,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "identity-api",
+          "Host": "employee-api",
           "Port": 8081
         }
       ],
@@ -29,7 +29,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "identity-api",
+          "Host": "employee-api",
           "Port": 8081
         }
       ],
@@ -41,12 +41,48 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "identity-api",
+          "Host": "employee-api",
           "Port": 8081
         }
       ],
       "UpstreamPathTemplate": "/api/employees/{email}",
       "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/cars",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "carpool-api",
+          "Port": 8082
+        }
+      ],
+      "UpstreamPathTemplate": "/api/cars",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/cars",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "carpool-api",
+          "Port": 8082
+        }
+      ],
+      "UpstreamPathTemplate": "/api/cars",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/cars/{licensePlateNumber}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "carpool-api",
+          "Port": 8082
+        }
+      ],
+      "UpstreamPathTemplate": "/api/cars/{licensePlateNumber}",
+      "UpstreamHttpMethod": [ "GET", "PUT", "DELETE" ]
     }
   ],
   "GlobalConfiguration": {

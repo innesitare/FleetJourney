@@ -5,14 +5,10 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "employee-api",
+          "Host": "identity-api",
           "Port": 8081
         }
       ],
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": []
-      },
       "UpstreamPathTemplate": "/api/employees",
       "UpstreamHttpMethod": [ "POST" ]
     },
@@ -21,14 +17,10 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "employee-api",
+          "Host": "identity-api",
           "Port": 8081
         }
       ],
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": []
-      },
       "UpstreamPathTemplate": "/api/employees",
       "UpstreamHttpMethod": [ "GET" ]
     },
@@ -37,14 +29,10 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "employee-api",
+          "Host": "identity-api",
           "Port": 8081
         }
       ],
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": []
-      },
       "UpstreamPathTemplate": "/api/employees/{id:guid}",
       "UpstreamHttpMethod": [ "GET", "PUT", "DELETE" ]
     },
@@ -53,14 +41,10 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "employee-api",
+          "Host": "identity-api",
           "Port": 8081
         }
       ],
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": []
-      },
       "UpstreamPathTemplate": "/api/employees/{email}",
       "UpstreamHttpMethod": [ "GET" ]
     }

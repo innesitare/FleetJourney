@@ -15,7 +15,7 @@ public sealed class GetEmployeeByIdQueryHandler : IQueryHandler<GetEmployeeByIdQ
 
     public async ValueTask<Employee?> Handle(GetEmployeeByIdQuery query, CancellationToken cancellationToken)
     {
-        var employee = await _employeeRepository.GetByIdAsync(query.Id, cancellationToken);
+        var employee = await _employeeRepository.GetAsync(query.Id, cancellationToken);
 
         return employee;
     }

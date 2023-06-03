@@ -2,7 +2,7 @@
 
 public sealed class EmployeeResponse
 {
-    public Guid Id { get; init; }  
+    public required Guid Id { get; init; }  
     
     public required string Name { get; init; }
     

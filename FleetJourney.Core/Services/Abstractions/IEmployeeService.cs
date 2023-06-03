@@ -6,7 +6,7 @@ public interface IEmployeeService
 {
     Task<IEnumerable<Employee>> GetAllAsync(CancellationToken cancellationToken);
 
-    Task<Employee?> GetByIdAsync(Guid employeeId, CancellationToken cancellationToken);
+    Task<Employee?> GetAsync(Guid employeeId, CancellationToken cancellationToken);
     
     Task<Employee?> GetByEmailAsync(string email, CancellationToken cancellationToken);
     
@@ -14,5 +14,5 @@ public interface IEmployeeService
     
     Task<Employee?> UpdateAsync(Employee employee, CancellationToken cancellationToken);
     
-    Task<bool> DeleteByIdAsync(Guid employeeId, CancellationToken cancellationToken);
+    Task<bool> DeleteAsync(Guid employeeId, CancellationToken cancellationToken);
 }

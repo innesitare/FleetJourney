@@ -28,7 +28,7 @@ internal sealed class EmployeeService : IEmployeeService
         }, cancellationToken);
     }
 
-    public Task<Employee?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
+    public Task<Employee?> GetAsync(Guid id, CancellationToken cancellationToken = default)
     {
         return _cacheService.GetOrCreateAsync(CacheKeys.Employees.Get(id), async () =>
         {
@@ -88,9 +88,9 @@ internal sealed class EmployeeService : IEmployeeService
         return result;
     }
 
-    public async Task<bool> DeleteByIdAsync(Guid id, CancellationToken cancellationToken)
+    public async Task<bool> DeleteAsync(Guid id, CancellationToken cancellationToken)
     {
-        bool isDeleted = await _sender.Send(new DeleteEmployeeByIdCommand
+        bool isDeleted = await _sender.Send(new DeleteEmployeeCommand
         {
             Id = id
         }, cancellationToken);

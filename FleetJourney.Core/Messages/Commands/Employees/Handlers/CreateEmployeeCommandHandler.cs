@@ -1,8 +1,7 @@
-﻿using FleetJourney.Core.Messages.Commands.Employees;
-using FleetJourney.Infrastructure.Repositories.Abstractions;
+﻿using FleetJourney.Infrastructure.Repositories.Abstractions;
 using Mediator;
 
-namespace FleetJourney.Core.Messages.Handlers.Employees;
+namespace FleetJourney.Core.Messages.Commands.Employees.Handlers;
 
 public sealed class CreateEmployeeCommandHandler : ICommandHandler<CreateEmployeeCommand, bool>
 {

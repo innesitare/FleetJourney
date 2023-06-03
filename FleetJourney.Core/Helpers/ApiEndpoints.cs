@@ -15,6 +15,17 @@ public static class ApiEndpoints
         public const string Update = $"{Base}/{{id:guid}}";
         public const string Delete = $"{Base}/{{id:guid}}";
     }
+    
+    public static class CarPool
+    {
+        private const string Base = $"{ApiBase}/cars";
+        
+        public const string Create = Base;
+        public const string GetAll = Base;
+        public const string Get = $"{Base}/{{licensePlateNumber}}";
+        public const string Update = $"{Base}/{{licensePlateNumber}}";
+        public const string Delete = $"{Base}/{{licensePlateNumber}}";
+    }
 
     public static class Trips
     {
