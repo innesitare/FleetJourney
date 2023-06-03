@@ -1,11 +1,9 @@
-﻿namespace FleetJourney.Domain.CarPool;
+﻿using FleetJourney.Domain.Trips;
 
-public record struct CarId(Guid Value);
+namespace FleetJourney.Domain.CarPool;
 
 public sealed class Car
 {
-    public required CarId Id { get; init; }
-    
     public required string LicensePlateNumber { get; init; }
     
     public required string Brand { get; init; }
@@ -16,5 +14,7 @@ public sealed class Car
     
     public required uint MaintenanceInterval { get; init; }
     
-    public required uint CurrentMileage { get; set; }
+    public required uint CurrentMileage { get; init; }
+    
+    public IEnumerable<Trip>? Trips { get; init; }
 }

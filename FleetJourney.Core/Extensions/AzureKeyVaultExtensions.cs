@@ -1,5 +1,5 @@
 ﻿using Azure.Identity;
-using FleetJourney.Core.Services;
+using FleetJourney.Core.Helpers;
 using Microsoft.Extensions.Configuration;
 
 namespace FleetJourney.Core.Extensions;

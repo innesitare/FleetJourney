@@ -1,0 +1,18 @@
+﻿services:
+  fleetjourney.identityapi:
+    container_name: identity-api
+    image: plaam/fleetjourney-identity-api:1.0.0
+    build:
+      context: .
+      dockerfile: FleetJourney.IdentityApi/Dockerfile
+    ports:
+      - "8001:80"
+
+  fleetjourney.apigateway:
+    container_name: api-gateway
+    image: plaam/fleetjourney-api-gateway:1.0.0
+    build:
+      context: .
+      dockerfile: FleetJourney.ApiGateway/Dockerfile
+    ports:
+      - "8000:80"

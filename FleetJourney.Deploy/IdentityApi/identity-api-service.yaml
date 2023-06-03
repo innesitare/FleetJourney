@@ -1,0 +1,13 @@
+﻿apiVersion: v1
+kind: Service
+metadata:
+  name: identity-api
+spec:
+  selector:
+    app: identity-api
+  ports:
+    - protocol: TCP
+      port: 8081
+      targetPort: 80
+  type: ClusterIP
+  

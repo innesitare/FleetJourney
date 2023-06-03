@@ -1,4 +1,4 @@
-﻿using System.Text;
+﻿using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
@@ -11,35 +11,25 @@ public static class JwtBearerExtensions
 {
     public static IConfigurationBuilder AddJwtBearer(this IConfigurationBuilder config, WebApplicationBuilder builder)
     {
-        builder.Services.AddAuthorization(options =>
+        builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
             {
-                options.AddPolicy("Bearer", policyBuilder =>
-                {
-                    policyBuilder.AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme);
-                    policyBuilder.RequireAuthenticatedUser().Build();
-                });
-            })
-            .AddAuthentication(options =>
-            {
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-            .AddJwtBearer("Bearer", options =>
-            {
+                options.Authority = $"https://{builder.Configuration["Auth0:Domain"]}";
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidateLifetime = true,
-                    ValidateIssuerSigningKey = true,
-
-                    ValidAudience = builder.Configuration["Jwt:Audience"],
-                    ValidIssuer = builder.Configuration["Jwt:Issuer"],
-                    IssuerSigningKey =
-                        new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
+                    ValidAudience = builder.Configuration["Auth0:Audience"],
+                    ValidIssuer = $"{builder.Configuration["Auth0:Domain"]}"
                 };
             });
+
+        builder.Services.AddAuthorization(o =>
+        {
+            o.AddPolicy("fleetjourney:read-write",
+                policyBuilder =>
+                {
+                    policyBuilder.RequireAuthenticatedUser().RequireClaim("scope", "fleetjourney:read-write");
+                });
+        });
 
         return builder.Configuration;
     }

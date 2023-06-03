@@ -1,0 +1,12 @@
+X:\Projects\FleetJourney\FleetJourney.Domain\bin\Debug\net7.0\FleetJourney.Domain.deps.json
+X:\Projects\FleetJourney\FleetJourney.Domain\bin\Debug\net7.0\FleetJourney.Domain.dll
+X:\Projects\FleetJourney\FleetJourney.Domain\bin\Debug\net7.0\FleetJourney.Domain.pdb
+X:\Projects\FleetJourney\FleetJourney.Domain\obj\Debug\net7.0\FleetJourney.Domain.csproj.AssemblyReference.cache
+X:\Projects\FleetJourney\FleetJourney.Domain\obj\Debug\net7.0\FleetJourney.Domain.GeneratedMSBuildEditorConfig.editorconfig
+X:\Projects\FleetJourney\FleetJourney.Domain\obj\Debug\net7.0\FleetJourney.Domain.AssemblyInfoInputs.cache
+X:\Projects\FleetJourney\FleetJourney.Domain\obj\Debug\net7.0\FleetJourney.Domain.AssemblyInfo.cs
+X:\Projects\FleetJourney\FleetJourney.Domain\obj\Debug\net7.0\FleetJourney.Domain.csproj.CoreCompileInputs.cache
+X:\Projects\FleetJourney\FleetJourney.Domain\obj\Debug\net7.0\FleetJourney.Domain.dll
+X:\Projects\FleetJourney\FleetJourney.Domain\obj\Debug\net7.0\refint\FleetJourney.Domain.dll
+X:\Projects\FleetJourney\FleetJourney.Domain\obj\Debug\net7.0\FleetJourney.Domain.pdb
+X:\Projects\FleetJourney\FleetJourney.Domain\obj\Debug\net7.0\ref\FleetJourney.Domain.dll

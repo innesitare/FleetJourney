@@ -6,15 +6,20 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleetJourney.Core", "FleetJ
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleetJourney.Domain", "FleetJourney.Domain\FleetJourney.Domain.csproj", "{7B3D910F-D706-474A-BE12-913F8E345968}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleetJourney.Messages", "FleetJourney.Messages\FleetJourney.Messages.csproj", "{113A4042-CB41-4995-986B-7AACF1CF9B6C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleetJourney.GUI", "FleetJourney.GUI\FleetJourney.GUI.csproj", "{1B42459B-AA8E-4C6D-AB7D-7B832B67BC89}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleetJourney.CarPoolApi", "FleetJourney.CarPoolApi\FleetJourney.CarPoolApi.csproj", "{AC3F653A-CBB0-4937-8A1C-E49D4EF68C3E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleetJourney.TripsApi", "FleetJourney.TripsApi\FleetJourney.TripsApi.csproj", "{B01D6854-53CF-42D9-B55C-D2066369B679}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleetJourney.IdentityService", "FleetJourney.IdentityApi\FleetJourney.IdentityService.csproj", "{DBCE8C43-2B9E-488A-BA79-A1548E080EC0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleetJourney.IdentityApi", "FleetJourney.IdentityApi\FleetJourney.IdentityApi.csproj", "{DBCE8C43-2B9E-488A-BA79-A1548E080EC0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleetJourney.Infrastructure", "FleetJourney.Infrastructure\FleetJourney.Infrastructure.csproj", "{A255B27E-B4F6-4B2D-84EE-4EB881D60D26}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{50BE18D9-5E41-45AE-8D08-FF1668749A42}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,10 +39,6 @@ Global
 		{7B3D910F-D706-474A-BE12-913F8E345968}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B3D910F-D706-474A-BE12-913F8E345968}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B3D910F-D706-474A-BE12-913F8E345968}.Release|Any CPU.Build.0 = Release|Any CPU
-		{113A4042-CB41-4995-986B-7AACF1CF9B6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{113A4042-CB41-4995-986B-7AACF1CF9B6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{113A4042-CB41-4995-986B-7AACF1CF9B6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{113A4042-CB41-4995-986B-7AACF1CF9B6C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1B42459B-AA8E-4C6D-AB7D-7B832B67BC89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1B42459B-AA8E-4C6D-AB7D-7B832B67BC89}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B42459B-AA8E-4C6D-AB7D-7B832B67BC89}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -54,5 +55,9 @@ Global
 		{DBCE8C43-2B9E-488A-BA79-A1548E080EC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DBCE8C43-2B9E-488A-BA79-A1548E080EC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DBCE8C43-2B9E-488A-BA79-A1548E080EC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A255B27E-B4F6-4B2D-84EE-4EB881D60D26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A255B27E-B4F6-4B2D-84EE-4EB881D60D26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A255B27E-B4F6-4B2D-84EE-4EB881D60D26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A255B27E-B4F6-4B2D-84EE-4EB881D60D26}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

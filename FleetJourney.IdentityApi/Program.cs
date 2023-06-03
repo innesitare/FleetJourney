@@ -1,12 +1,11 @@
 using FleetJourney.Core.Extensions;
+using FleetJourney.Core.Messages.Orchestrates;
+using FleetJourney.Core.Services.Abstractions;
 using FleetJourney.Core.Settings;
-using FleetJourney.IdentityApi.Extensions;
-using FleetJourney.IdentityApi.Messages.Consumers;
-using FleetJourney.IdentityApi.Models;
-using FleetJourney.IdentityApi.Persistence;
-using FleetJourney.IdentityApi.Persistence.Abstractions;
-using FleetJourney.IdentityApi.Services.Abstractions;
-using FleetJourney.IdentityApi.Validation;
+using FleetJourney.Core.Validation;
+using FleetJourney.Infrastructure.Persistence;
+using FleetJourney.Infrastructure.Persistence.Abstractions;
+using FleetJourney.Infrastructure.Repositories.Abstractions;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using MassTransit;
@@ -18,32 +17,34 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Host.UseSerilog((context, configuration) => configuration.ReadFrom.Configuration(context.Configuration));
 
 builder.Configuration.AddAzureKeyVault();
+builder.Configuration.AddJwtBearer(builder);
 
 builder.Services.AddControllers();
 builder.Services.AddMediator();
 
-builder.Services.AddApplicationDbContext<IIdentityDbContext, IdentityDbContext>(builder.Configuration["FleetIdentityDb:ConnectionString"]!);
+builder.Services.AddApplicationDbContext<IApplicationDbContext, ApplicationDbContext>(
+    builder.Configuration["FleetApplicationStore:ConnectionString"]!);
 
-builder.Services.AddApplicationService<IAuthService<ApplicationUser>>();
-builder.Services.AddApplicationService<ITokenWriter<ApplicationUser>>();
+builder.Services.AddStackExchangeRedisCache(options => 
+    options.Configuration = builder.Configuration["Redis:ConnectionString"]);
 
-builder.Services.AddOptions<JwtSettings>()
-    .Bind(builder.Configuration.GetRequiredSection("Jwt"))
-    .ValidateOnStart();
+builder.Services.AddApplicationService(typeof(ICacheService<>));
 
-builder.Services.AddOptions<AwsMessagingSettings>()
-    .Bind(builder.Configuration.GetRequiredSection("AWS"))
-    .ValidateOnStart();
+builder.Services.AddApplicationService<IEmployeeService>();
+builder.Services.AddApplicationService<IEmployeeRepository>();
 
 builder.Services.AddFluentValidationAutoValidation()
-    .AddValidatorsFromAssemblyContaining<IValidationMarker>();
+    .AddValidatorsFromAssemblyContaining<IValidationMarker>(includeInternalTypes: true);
+
+builder.Services.AddOptions<AwsMessagingSettings>()
+    .Bind(builder.Configuration.GetRequiredSection("Aws"))
+    .ValidateOnStart();
 
 builder.Services.AddMassTransit(x =>
 {
     x.SetKebabCaseEndpointNameFormatter();
 
-    x.AddConsumer<DeleteEmployeeConsumer>();
-    x.AddConsumer<UpdateEmployeeConsumer>();
+    x.AddConsumer<EmployeeOrchestrator>();
 
     x.UsingAmazonSqs((context, config) =>
     {
@@ -61,9 +62,10 @@ builder.Services.AddMassTransit(x =>
     });
 });
 
-builder.Services.AddIdentityConfiguration();
-
 var app = builder.Build();
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.UseSerilogRequestLogging();
 
