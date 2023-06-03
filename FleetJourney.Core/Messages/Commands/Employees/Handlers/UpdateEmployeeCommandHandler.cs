@@ -1,11 +1,10 @@
-﻿using FleetJourney.Core.Messages.Commands.Employees;
-using FleetJourney.Domain.EmployeeInfo;
+﻿using FleetJourney.Domain.EmployeeInfo;
 using FleetJourney.Domain.Messages.Employees;
 using FleetJourney.Infrastructure.Repositories.Abstractions;
 using MassTransit;
 using Mediator;
 
-namespace FleetJourney.Core.Messages.Handlers.Employees;
+namespace FleetJourney.Core.Messages.Commands.Employees.Handlers;
 
 public sealed class UpdateEmployeeCommandHandler : ICommandHandler<UpdateEmployeeCommand, Employee?>
 {
@@ -20,16 +19,16 @@ public sealed class UpdateEmployeeCommandHandler : ICommandHandler<UpdateEmploye
 
     public async ValueTask<Employee?> Handle(UpdateEmployeeCommand command, CancellationToken cancellationToken)
     {
-        var updateEmployee = await _employeeRepository.UpdateAsync(command.Employee, cancellationToken);
-        if (updateEmployee is not null)
+        var updatedEmployee = await _employeeRepository.UpdateAsync(command.Employee, cancellationToken);
+        if (updatedEmployee is not null)
         {
             var sendEndpoint = await _sendEndpointProvider.GetSendEndpoint(new Uri("queue:update-employee"));
             await sendEndpoint.Send<UpdateEmployee>(new
             {
-                Employee = updateEmployee
+                Employee = updatedEmployee
             }, cancellationToken);
         }
 
-        return updateEmployee;
+        return updatedEmployee;
     }
 }

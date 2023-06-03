@@ -11,11 +11,6 @@ public sealed class TripConfiguration : IEntityTypeConfiguration<Trip>
         builder.ToTable("Trips")
             .HasKey(t => t.Id);
 
-        builder.Property(t => t.LicensePlateNumber)
-            .IsUnicode(false)
-            .IsRequired()
-            .HasMaxLength(50);
-
         builder.Property(t => t.StartMileage)
             .IsRequired();
         

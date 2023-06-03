@@ -22,7 +22,7 @@ public sealed class EmployeeOrchestrator :
 
     public async Task Consume(ConsumeContext<CreateEmployee> context)
     {
-        _logger.LogInformation(@"Creating employee with email: {@Email}", context.Message.Email);
+        _logger.LogInformation("Creating employee with email: {@Email}", context.Message.Email);
         await _employeeService.CreateAsync(new Employee
         {
             Email = context.Message.Email,
@@ -40,7 +40,7 @@ public sealed class EmployeeOrchestrator :
 
     public async Task Consume(ConsumeContext<DeleteEmployee> context)
     {      
-        _logger.LogInformation(@"Deleting employee with id: {@Id}", context.Message.Id);
-        await _employeeService.DeleteByIdAsync(context.Message.Id, context.CancellationToken);
+        _logger.LogInformation("Deleting employee with id: {@Id}", context.Message.Id);
+        await _employeeService.DeleteAsync(context.Message.Id, context.CancellationToken);
     }
 }

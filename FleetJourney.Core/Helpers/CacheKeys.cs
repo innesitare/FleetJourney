@@ -8,4 +8,10 @@ internal static class CacheKeys
         public static string Get(Guid employeeId) => $"employees-{employeeId}";
         public static string GetByEmail(string email) => $"employees-email-{email}";
     }
+
+    public static class CarPool
+    {
+        public static string GetAll => "cars-all";
+        public static string Get(string licenseNumber) => $"cars-{licenseNumber}";
+    }
 }

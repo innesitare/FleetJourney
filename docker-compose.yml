@@ -1,18 +1,27 @@
 ﻿services:
-  fleetjourney.identityapi:
-    container_name: identity-api
-    image: plaam/fleetjourney-identity-api:1.0.0
-    build:
-      context: .
-      dockerfile: FleetJourney.IdentityApi/Dockerfile
-    ports:
-      - "8001:80"
-
   fleetjourney.apigateway:
     container_name: api-gateway
-    image: plaam/fleetjourney-api-gateway:1.0.0
+    image: plaam/fleetjourney-api-gateway:1.0.3
     build:
       context: .
       dockerfile: FleetJourney.ApiGateway/Dockerfile
     ports:
       - "8000:80"
+        
+  fleetjourney.employeeapi:
+    container_name: employee-api
+    image: plaam/fleetjourney-employee-api:1.0.0
+    build:
+      context: .
+      dockerfile: FleetJourney.EmployeeApi/Dockerfile
+    ports:
+      - "8001:80"
+        
+  fleetjourney.carpoolapi:
+    container_name: carpool-api
+    image: plaam/fleetjourney-carpool-api:1.0.0
+    build:
+      context: .
+      dockerfile: FleetJourney.CarPoolApi/Dockerfile
+    ports:
+      - "8002:80"
