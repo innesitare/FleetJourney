@@ -5,14 +5,8 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-        <RootNamespace>FleetJourney.TripService</RootNamespace>
+        <RootNamespace>FleetJourney.TripsApi</RootNamespace>
     </PropertyGroup>
-
-    <ItemGroup>
-      <Content Include="..\.dockerignore">
-        <Link>.dockerignore</Link>
-      </Content>
-    </ItemGroup>
 
     <ItemGroup>
       <PackageReference Include="Azure.Extensions.AspNetCore.Configuration.Secrets" Version="1.2.2" />
@@ -44,6 +38,16 @@
       <PackageReference Include="Scrutor" Version="4.2.2" />
       <PackageReference Include="Serilog" Version="2.12.0" />
       <PackageReference Include="StackExchange.Redis" Version="2.6.111" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\FleetJourney.Application\FleetJourney.Application.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="..\.dockerignore">
+        <Link>.dockerignore</Link>
+      </Content>
     </ItemGroup>
 
 </Project>

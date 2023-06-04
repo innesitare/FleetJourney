@@ -102,9 +102,7 @@ namespace FleetJourney.Infrastructure.Migrations
 
                     b.Property<string>("LicensePlateNumber")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(50)");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<uint>("StartMileage")
                         .HasColumnType("int unsigned");
@@ -116,28 +114,25 @@ namespace FleetJourney.Infrastructure.Migrations
                     b.HasIndex("Id")
                         .IsUnique();
 
-                    b.HasIndex("LicensePlateNumber");
+                    b.HasIndex("LicensePlateNumber")
+                        .IsUnique();
 
                     b.ToTable("Trips", (string)null);
                 });
 
             modelBuilder.Entity("FleetJourney.Domain.Trips.Trip", b =>
                 {
-                    b.HasOne("FleetJourney.Domain.EmployeeInfo.Employee", "Employee")
+                    b.HasOne("FleetJourney.Domain.EmployeeInfo.Employee", null)
                         .WithMany("Trips")
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FleetJourney.Domain.CarPool.Car", "Car")
+                    b.HasOne("FleetJourney.Domain.CarPool.Car", null)
                         .WithMany("Trips")
                         .HasForeignKey("LicensePlateNumber")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Car");
-
-                    b.Navigation("Employee");
                 });
 
             modelBuilder.Entity("FleetJourney.Domain.CarPool.Car", b =>

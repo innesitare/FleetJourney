@@ -93,9 +93,9 @@ X:\Projects\FleetJourney\FleetJourney.CarPoolApi\bin\Debug\net7.0\Serilog.Settin
 X:\Projects\FleetJourney\FleetJourney.CarPoolApi\bin\Debug\net7.0\Serilog.Sinks.Console.dll
 X:\Projects\FleetJourney\FleetJourney.CarPoolApi\bin\Debug\net7.0\Serilog.Sinks.Debug.dll
 X:\Projects\FleetJourney\FleetJourney.CarPoolApi\bin\Debug\net7.0\Serilog.Sinks.File.dll
-X:\Projects\FleetJourney\FleetJourney.CarPoolApi\bin\Debug\net7.0\FleetJourney.Core.dll
 X:\Projects\FleetJourney\FleetJourney.CarPoolApi\bin\Debug\net7.0\FleetJourney.Domain.dll
 X:\Projects\FleetJourney\FleetJourney.CarPoolApi\bin\Debug\net7.0\FleetJourney.Infrastructure.dll
-X:\Projects\FleetJourney\FleetJourney.CarPoolApi\bin\Debug\net7.0\FleetJourney.Core.pdb
 X:\Projects\FleetJourney\FleetJourney.CarPoolApi\bin\Debug\net7.0\FleetJourney.Domain.pdb
 X:\Projects\FleetJourney\FleetJourney.CarPoolApi\bin\Debug\net7.0\FleetJourney.Infrastructure.pdb
+X:\Projects\FleetJourney\FleetJourney.CarPoolApi\bin\Debug\net7.0\FleetJourney.Application.dll
+X:\Projects\FleetJourney\FleetJourney.CarPoolApi\bin\Debug\net7.0\FleetJourney.Application.pdb

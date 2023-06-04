@@ -1,0 +1,13 @@
+﻿apiVersion: v1
+kind: Service
+metadata:
+  name: employees-api
+spec:
+  selector:
+    app: employees-api
+  ports:
+    - protocol: TCP
+      port: 8081
+      targetPort: 80
+  type: ClusterIP
+  

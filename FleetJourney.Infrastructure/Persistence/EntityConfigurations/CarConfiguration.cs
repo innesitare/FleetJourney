@@ -31,7 +31,7 @@ public sealed class CarConfiguration : IEntityTypeConfiguration<Car>
             .IsRequired();
 
         builder.HasMany(c => c.Trips)
-            .WithOne(t => t.Car)
+            .WithOne()
             .HasForeignKey(t => t.LicensePlateNumber)
             .IsRequired()
             .OnDelete(DeleteBehavior.Cascade);

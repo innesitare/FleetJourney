@@ -6,9 +6,9 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
 COPY ["FleetJourney.CarPoolApi/FleetJourney.CarPoolApi.csproj", "FleetJourney.CarPoolApi/"]
-COPY ["FleetJourney.Core/FleetJourney.Core.csproj", "FleetJourney.Core/"]
-COPY ["FleetJourney.Domain/FleetJourney.Domain.csproj", "FleetJourney.Domain/"]
+COPY ["FleetJourney.Application/FleetJourney.Application.csproj", "FleetJourney.Application/"]
 COPY ["FleetJourney.Infrastructure/FleetJourney.Infrastructure.csproj", "FleetJourney.Infrastructure/"]
+COPY ["FleetJourney.Domain/FleetJourney.Domain.csproj", "FleetJourney.Domain/"]
 RUN dotnet restore "FleetJourney.CarPoolApi/FleetJourney.CarPoolApi.csproj"
 COPY . .
 WORKDIR "/src/FleetJourney.CarPoolApi"

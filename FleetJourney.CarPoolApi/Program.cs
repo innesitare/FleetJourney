@@ -1,11 +1,11 @@
-using FleetJourney.Core.Extensions;
-using FleetJourney.Core.Messages.Orchestrates;
-using FleetJourney.Core.Services.Abstractions;
-using FleetJourney.Core.Settings;
-using FleetJourney.Core.Validation;
+using FleetJourney.Application.Extensions;
+using FleetJourney.Application.Messages.Orchestrates;
+using FleetJourney.Application.Repositories.Abstractions;
+using FleetJourney.Application.Services.Abstractions;
+using FleetJourney.Application.Settings;
+using FleetJourney.Application.Validation;
 using FleetJourney.Infrastructure.Persistence;
 using FleetJourney.Infrastructure.Persistence.Abstractions;
-using FleetJourney.Infrastructure.Repositories.Abstractions;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using MassTransit;
@@ -29,6 +29,7 @@ builder.Services.AddStackExchangeRedisCache(options =>
     options.Configuration = builder.Configuration["Redis:ConnectionString"]);
 
 builder.Services.AddApplicationService(typeof(ICacheService<>));
+builder.Services.AddApplicationService(typeof(IRepository<,>));
 
 builder.Services.AddApplicationService<ICarPoolService>();
 builder.Services.AddApplicationService<ICarPoolRepository>();

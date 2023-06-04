@@ -5,7 +5,7 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-        <RootNamespace>FleetJourney.CarService</RootNamespace>
+        <RootNamespace>FleetJourney.CarPoolApi</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
@@ -41,7 +41,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\FleetJourney.Core\FleetJourney.Core.csproj" />
+      <ProjectReference Include="..\FleetJourney.Application\FleetJourney.Application.csproj" />
     </ItemGroup>
 
     <ItemGroup>

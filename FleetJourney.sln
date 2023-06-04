@@ -2,7 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleetJourney.ApiGateway", "FleetJourney.ApiGateway\FleetJourney.ApiGateway.csproj", "{485E0720-F367-4C91-9C00-5AA5D110ADEC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleetJourney.Core", "FleetJourney.Core\FleetJourney.Core.csproj", "{6DEC507F-7497-4340-B31B-D710CF4EF1A5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleetJourney.Application", "FleetJourney.Application\FleetJourney.Application.csproj", "{6DEC507F-7497-4340-B31B-D710CF4EF1A5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleetJourney.Domain", "FleetJourney.Domain\FleetJourney.Domain.csproj", "{7B3D910F-D706-474A-BE12-913F8E345968}"
 EndProject
@@ -12,7 +12,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleetJourney.CarPoolApi", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleetJourney.TripsApi", "FleetJourney.TripsApi\FleetJourney.TripsApi.csproj", "{B01D6854-53CF-42D9-B55C-D2066369B679}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleetJourney.EmployeeApi", "FleetJourney.EmployeeApi\FleetJourney.EmployeeApi.csproj", "{DBCE8C43-2B9E-488A-BA79-A1548E080EC0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleetJourney.EmployeesApi", "FleetJourney.EmployeesApi\FleetJourney.EmployeesApi.csproj", "{DBCE8C43-2B9E-488A-BA79-A1548E080EC0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleetJourney.Infrastructure", "FleetJourney.Infrastructure\FleetJourney.Infrastructure.csproj", "{A255B27E-B4F6-4B2D-84EE-4EB881D60D26}"
 EndProject

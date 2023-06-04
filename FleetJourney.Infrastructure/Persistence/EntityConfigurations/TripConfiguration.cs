@@ -20,14 +20,11 @@ public sealed class TripConfiguration : IEntityTypeConfiguration<Trip>
         builder.Property(t => t.IsPrivateTrip)
             .IsRequired();
         
-        builder.HasIndex(e => e.Id)
+        builder.HasIndex(t => t.LicensePlateNumber)
+            .IsUnique();
+        
+        builder.HasIndex(t => t.Id)
             .IsUnique()
             .IsDescending(false);
-
-        builder.HasOne(t => t.Employee)
-            .WithMany(e => e.Trips)
-            .HasForeignKey(t => t.EmployeeId)
-            .IsRequired()
-            .OnDelete(DeleteBehavior.Cascade);
     }
 }

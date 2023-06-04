@@ -1,10 +1,10 @@
-﻿using FleetJourney.Core.Contracts.Requests.CarPool;
-using FleetJourney.Core.Helpers;
-using FleetJourney.Core.Mapping;
-using FleetJourney.Core.Services.Abstractions;
+﻿using FleetJourney.Application.Contracts.Requests.CarPool;
+using FleetJourney.Application.Helpers;
+using FleetJourney.Application.Mapping;
+using FleetJourney.Application.Services.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FleetJourney.CarService.Controllers;
+namespace FleetJourney.CarPoolApi.Controllers;
 
 // [Authorize]
 [ApiController]
@@ -27,8 +27,7 @@ public sealed class CarPoolController : ControllerBase
     }
 
     [HttpGet(ApiEndpoints.CarPool.Get)]
-    public async Task<IActionResult> GetCarByNumber([FromRoute] string licensePlateNumber,
-        CancellationToken cancellationToken)
+    public async Task<IActionResult> GetCar([FromRoute] string licensePlateNumber, CancellationToken cancellationToken)
     {
         var car = await _carPoolService.GetAsync(licensePlateNumber, cancellationToken);
 
@@ -38,14 +37,13 @@ public sealed class CarPoolController : ControllerBase
     }
 
     [HttpPost(ApiEndpoints.CarPool.Create)]
-    public async Task<IActionResult> CreateCar([FromBody] CreateCarRequest request,
-        CancellationToken cancellationToken)
+    public async Task<IActionResult> CreateCar([FromBody] CreateCarRequest request, CancellationToken cancellationToken)
     {
         var car = request.ToCar();
         bool isCreated = await _carPoolService.CreateAsync(car, cancellationToken);
 
         return isCreated
-            ? CreatedAtAction(nameof(GetCarByNumber), new {licensePlateNumber = car.LicensePlateNumber},
+            ? CreatedAtAction(nameof(GetCar), new {licensePlateNumber = car.LicensePlateNumber},
                 car.ToResponse())
             : BadRequest();
     }
