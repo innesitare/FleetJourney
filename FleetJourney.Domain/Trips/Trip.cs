@@ -5,10 +5,8 @@ namespace FleetJourney.Domain.Trips;
 
 public sealed class Trip
 {
-    public required Guid Id { get; init; }
+    public Guid Id { get; init; } = Guid.NewGuid();
 
-    public required string LicensePlateNumber { get; init; }
-    
     public required uint StartMileage { get; init; }
     
     public required uint EndMileage { get; init; }
@@ -17,7 +15,5 @@ public sealed class Trip
     
     public required Guid EmployeeId { get; init; }
     
-    public required Employee? Employee { get; init; }
-    
-    public required Car? Car { get; init; }
+    public required Guid CarId { get; init; }
 }

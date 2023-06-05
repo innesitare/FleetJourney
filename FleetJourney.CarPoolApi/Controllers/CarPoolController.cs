@@ -1,10 +1,10 @@
-﻿using FleetJourney.Core.Contracts.Requests.CarPool;
-using FleetJourney.Core.Helpers;
-using FleetJourney.Core.Mapping;
-using FleetJourney.Core.Services.Abstractions;
+﻿using FleetJourney.Application.Contracts.Requests.CarPool;
+using FleetJourney.Application.Helpers;
+using FleetJourney.Application.Mapping;
+using FleetJourney.Application.Services.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FleetJourney.CarService.Controllers;
+namespace FleetJourney.CarPoolApi.Controllers;
 
 // [Authorize]
 [ApiController]
@@ -27,10 +27,9 @@ public sealed class CarPoolController : ControllerBase
     }
 
     [HttpGet(ApiEndpoints.CarPool.Get)]
-    public async Task<IActionResult> GetCarByNumber([FromRoute] string licensePlateNumber,
-        CancellationToken cancellationToken)
+    public async Task<IActionResult> GetCar([FromRoute] Guid id, CancellationToken cancellationToken)
     {
-        var car = await _carPoolService.GetAsync(licensePlateNumber, cancellationToken);
+        var car = await _carPoolService.GetAsync(id, cancellationToken);
 
         return car is not null
             ? Ok(car.ToResponse())
@@ -38,23 +37,21 @@ public sealed class CarPoolController : ControllerBase
     }
 
     [HttpPost(ApiEndpoints.CarPool.Create)]
-    public async Task<IActionResult> CreateCar([FromBody] CreateCarRequest request,
-        CancellationToken cancellationToken)
+    public async Task<IActionResult> CreateCar([FromBody] CreateCarRequest request, CancellationToken cancellationToken)
     {
         var car = request.ToCar();
         bool isCreated = await _carPoolService.CreateAsync(car, cancellationToken);
 
         return isCreated
-            ? CreatedAtAction(nameof(GetCarByNumber), new {licensePlateNumber = car.LicensePlateNumber},
-                car.ToResponse())
+            ? CreatedAtAction(nameof(GetCar), new {id = car.Id}, car.ToResponse())
             : BadRequest();
     }
 
     [HttpPut(ApiEndpoints.CarPool.Update)]
-    public async Task<IActionResult> UpdateCar([FromRoute] string licensePlateNumber,
+    public async Task<IActionResult> UpdateCar([FromRoute] Guid id,
         [FromBody] UpdateCarRequest request, CancellationToken cancellationToken)
     {
-        var car = request.ToCar(licensePlateNumber);
+        var car = request.ToCar(id);
         var updatedCar = await _carPoolService.UpdateAsync(car, cancellationToken);
 
         return updatedCar is not null
@@ -63,10 +60,10 @@ public sealed class CarPoolController : ControllerBase
     }
 
     [HttpDelete(ApiEndpoints.CarPool.Delete)]
-    public async Task<IActionResult> DeleteCar([FromRoute] string licensePlateNumber,
+    public async Task<IActionResult> DeleteCar([FromRoute] Guid id,
         CancellationToken cancellationToken)
     {
-        bool isDeleted = await _carPoolService.DeleteAsync(licensePlateNumber, cancellationToken);
+        bool isDeleted = await _carPoolService.DeleteAsync(id, cancellationToken);
 
         return isDeleted
             ? Ok()

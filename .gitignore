@@ -357,6 +357,9 @@ __pycache__/
 *.rsuser
 
 # User-specific files (MonoDevelop/Xamarin Studio)
+**/bin/*
+**/obj/*
+packages
 
 # Mono auto generated files
 mono_crash.*

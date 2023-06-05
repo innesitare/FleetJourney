@@ -2,5 +2,5 @@
 
 public sealed class DeleteCar
 {
-    public required string LicensePlateNumber { get; init; }
+    public required Guid Id { get; init; }
 }

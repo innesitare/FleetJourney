@@ -5,48 +5,48 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "employee-api",
+          "Host": "employees-api",
           "Port": 8081
         }
       ],
       "UpstreamPathTemplate": "/api/employees",
-      "UpstreamHttpMethod": [ "POST" ]
+      "UpstreamHttpMethod": ["POST"]
     },
     {
       "DownstreamPathTemplate": "/api/employees",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "employee-api",
+          "Host": "employees-api",
           "Port": 8081
         }
       ],
       "UpstreamPathTemplate": "/api/employees",
-      "UpstreamHttpMethod": [ "GET" ]
+      "UpstreamHttpMethod": ["GET"]
     },
     {
       "DownstreamPathTemplate": "/api/employees/{id:guid}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "employee-api",
+          "Host": "employees-api",
           "Port": 8081
         }
       ],
       "UpstreamPathTemplate": "/api/employees/{id:guid}",
-      "UpstreamHttpMethod": [ "GET", "PUT", "DELETE" ]
+      "UpstreamHttpMethod": ["GET", "PUT", "DELETE"]
     },
     {
       "DownstreamPathTemplate": "/api/employees/{email}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "employee-api",
+          "Host": "employees-api",
           "Port": 8081
         }
       ],
       "UpstreamPathTemplate": "/api/employees/{email}",
-      "UpstreamHttpMethod": [ "GET" ]
+      "UpstreamHttpMethod": ["GET"]
     },
     {
       "DownstreamPathTemplate": "/api/cars",
@@ -58,7 +58,7 @@
         }
       ],
       "UpstreamPathTemplate": "/api/cars",
-      "UpstreamHttpMethod": [ "POST" ]
+      "UpstreamHttpMethod": ["POST"]
     },
     {
       "DownstreamPathTemplate": "/api/cars",
@@ -70,7 +70,7 @@
         }
       ],
       "UpstreamPathTemplate": "/api/cars",
-      "UpstreamHttpMethod": [ "GET" ]
+      "UpstreamHttpMethod": ["GET"]
     },
     {
       "DownstreamPathTemplate": "/api/cars/{licensePlateNumber}",
@@ -82,7 +82,67 @@
         }
       ],
       "UpstreamPathTemplate": "/api/cars/{licensePlateNumber}",
-      "UpstreamHttpMethod": [ "GET", "PUT", "DELETE" ]
+      "UpstreamHttpMethod": ["GET", "PUT", "DELETE"]
+    },
+    {
+      "DownstreamPathTemplate": "/api/trips",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "trips-api",
+          "Port": 8083
+        }
+      ],
+      "UpstreamPathTemplate": "/api/trips",
+      "UpstreamHttpMethod": ["POST"]
+    },
+    {
+      "DownstreamPathTemplate": "/api/trips",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "trips-api",
+          "Port": 8083
+        }
+      ],
+      "UpstreamPathTemplate": "/api/trips",
+      "UpstreamHttpMethod": ["GET"]
+    },
+    {
+      "DownstreamPathTemplate": "/api/trips/employees/{id:guid}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "trips-api",
+          "Port": 8083
+        }
+      ],
+      "UpstreamPathTemplate": "/api/trips/employees/{id:guid}",
+      "UpstreamHttpMethod": ["GET"]
+    },
+    {
+      "DownstreamPathTemplate": "/api/trips/cars/{licensePlateNumber}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "trips-api",
+          "Port": 8083
+        }
+      ],
+      "UpstreamPathTemplate": "/api/trips/cars/{licensePlateNumber}",
+      "UpstreamHttpMethod": ["GET"]
+    },
+    {
+      "DownstreamPathTemplate": "/api/trips/{id:guid}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "trips-api",
+          "Port": 8083
+        }
+      ],
+      "UpstreamPathTemplate": "/api/trips/{id:guid}",
+      "UpstreamHttpMethod": ["GET", "PUT", "DELETE"]
     }
   ],
   "GlobalConfiguration": {

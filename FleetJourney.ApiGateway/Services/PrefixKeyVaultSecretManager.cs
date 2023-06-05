@@ -12,12 +12,12 @@ internal sealed class PrefixKeyVaultSecretManager : KeyVaultSecretManager
         _prefix = $"{prefix}-";
     }
 
-    override public bool Load(SecretProperties secret)
+    public override bool Load(SecretProperties secret)
     {
         return secret.Name.StartsWith(_prefix);
     }
 
-    override public string GetKey(KeyVaultSecret secret)
+    public override string GetKey(KeyVaultSecret secret)
     {
         return secret.Name[_prefix.Length..].Replace("--", ConfigurationPath.KeyDelimiter);
     }

@@ -34,7 +34,7 @@ public sealed class EmployeeConfiguration : IEntityTypeConfiguration<Employee>
             .IsDescending(false);
 
         builder.HasMany(e => e.Trips)
-            .WithOne(t => t.Employee)
+            .WithOne()
             .HasForeignKey(t => t.EmployeeId)
             .IsRequired()
             .OnDelete(DeleteBehavior.Cascade);
