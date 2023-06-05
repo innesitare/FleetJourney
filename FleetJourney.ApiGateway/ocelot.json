@@ -10,7 +10,7 @@
         }
       ],
       "UpstreamPathTemplate": "/api/employees",
-      "UpstreamHttpMethod": [ "POST" ]
+      "UpstreamHttpMethod": ["POST"]
     },
     {
       "DownstreamPathTemplate": "/api/employees",
@@ -22,7 +22,7 @@
         }
       ],
       "UpstreamPathTemplate": "/api/employees",
-      "UpstreamHttpMethod": [ "GET" ]
+      "UpstreamHttpMethod": ["GET"]
     },
     {
       "DownstreamPathTemplate": "/api/employees/{id:guid}",
@@ -34,7 +34,7 @@
         }
       ],
       "UpstreamPathTemplate": "/api/employees/{id:guid}",
-      "UpstreamHttpMethod": [ "GET", "PUT", "DELETE" ]
+      "UpstreamHttpMethod": ["GET", "PUT", "DELETE"]
     },
     {
       "DownstreamPathTemplate": "/api/employees/{email}",
@@ -46,7 +46,7 @@
         }
       ],
       "UpstreamPathTemplate": "/api/employees/{email}",
-      "UpstreamHttpMethod": [ "GET" ]
+      "UpstreamHttpMethod": ["GET"]
     },
     {
       "DownstreamPathTemplate": "/api/cars",
@@ -58,7 +58,7 @@
         }
       ],
       "UpstreamPathTemplate": "/api/cars",
-      "UpstreamHttpMethod": [ "POST" ]
+      "UpstreamHttpMethod": ["POST"]
     },
     {
       "DownstreamPathTemplate": "/api/cars",
@@ -70,7 +70,7 @@
         }
       ],
       "UpstreamPathTemplate": "/api/cars",
-      "UpstreamHttpMethod": [ "GET" ]
+      "UpstreamHttpMethod": ["GET"]
     },
     {
       "DownstreamPathTemplate": "/api/cars/{licensePlateNumber}",
@@ -82,7 +82,7 @@
         }
       ],
       "UpstreamPathTemplate": "/api/cars/{licensePlateNumber}",
-      "UpstreamHttpMethod": [ "GET", "PUT", "DELETE" ]
+      "UpstreamHttpMethod": ["GET", "PUT", "DELETE"]
     },
     {
       "DownstreamPathTemplate": "/api/trips",
@@ -94,7 +94,7 @@
         }
       ],
       "UpstreamPathTemplate": "/api/trips",
-      "UpstreamHttpMethod": [ "POST" ]
+      "UpstreamHttpMethod": ["POST"]
     },
     {
       "DownstreamPathTemplate": "/api/trips",
@@ -106,7 +106,7 @@
         }
       ],
       "UpstreamPathTemplate": "/api/trips",
-      "UpstreamHttpMethod": [ "GET" ]
+      "UpstreamHttpMethod": ["GET"]
     },
     {
       "DownstreamPathTemplate": "/api/trips/employees/{id:guid}",
@@ -118,7 +118,7 @@
         }
       ],
       "UpstreamPathTemplate": "/api/trips/employees/{id:guid}",
-      "UpstreamHttpMethod": [ "GET" ]
+      "UpstreamHttpMethod": ["GET"]
     },
     {
       "DownstreamPathTemplate": "/api/trips/cars/{licensePlateNumber}",
@@ -130,7 +130,7 @@
         }
       ],
       "UpstreamPathTemplate": "/api/trips/cars/{licensePlateNumber}",
-      "UpstreamHttpMethod": [ "GET" ]
+      "UpstreamHttpMethod": ["GET"]
     },
     {
       "DownstreamPathTemplate": "/api/trips/{id:guid}",
@@ -142,7 +142,7 @@
         }
       ],
       "UpstreamPathTemplate": "/api/trips/{id:guid}",
-      "UpstreamHttpMethod": [ "GET", "PUT", "DELETE" ]
+      "UpstreamHttpMethod": ["GET", "PUT", "DELETE"]
     }
   ],
   "GlobalConfiguration": {

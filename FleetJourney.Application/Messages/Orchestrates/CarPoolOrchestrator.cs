@@ -23,7 +23,7 @@ public sealed class CarPoolOrchestrator :
     public async Task Consume(ConsumeContext<CreateCar> context)
     {
         var message = context.Message;
-        _logger.LogInformation("Creating car with number: {PlateNumber}", message.LicensePlateNumber);
+        _logger.LogInformation("Creating car with number: {Id}", message.LicensePlateNumber);
 
         var car = new Car
         {
@@ -41,7 +41,7 @@ public sealed class CarPoolOrchestrator :
     public async Task Consume(ConsumeContext<UpdateCar> context)
     {
         var message = context.Message;
-        _logger.LogInformation("Updating car with number: {PlateNumber}", message.Car.LicensePlateNumber);
+        _logger.LogInformation("Updating car with id: {Id}", message.Car.Id);
         
         await _carPoolService.UpdateAsync(message.Car, context.CancellationToken);
     }
@@ -49,8 +49,8 @@ public sealed class CarPoolOrchestrator :
     public async Task Consume(ConsumeContext<DeleteCar> context)
     {
         var message = context.Message;
-        _logger.LogInformation("Deleting car with number: {PlateNumber}", message.LicensePlateNumber);
+        _logger.LogInformation("Deleting car with id: {Id}", message.Id);
         
-        await _carPoolService.DeleteAsync(message.LicensePlateNumber, context.CancellationToken);
+        await _carPoolService.DeleteAsync(message.Id, context.CancellationToken);
     }
 }

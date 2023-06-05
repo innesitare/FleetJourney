@@ -2,7 +2,9 @@
 
 public sealed class UpdateCarRequest
 {
-    public string? LicensePlateNumber { get; internal set; }
+    public Guid Id { get; internal set; }
+    
+    public required string LicensePlateNumber { get; init; }
     
     public required string Brand { get; init; }
     

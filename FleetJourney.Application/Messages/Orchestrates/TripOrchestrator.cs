@@ -27,7 +27,7 @@ public sealed class TripOrchestrator :
 
         var trip = new Trip
         {
-            LicensePlateNumber = message.LicensePlateNumber,
+            CarId = message.CarId,
             StartMileage = message.StartMileage,
             EndMileage = message.EndMileage,
             IsPrivateTrip = message.IsPrivateTrip,

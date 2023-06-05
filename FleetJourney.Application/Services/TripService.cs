@@ -1,5 +1,6 @@
 ﻿using FleetJourney.Application.Helpers;
 using FleetJourney.Application.Messages.Commands.Trips;
+using FleetJourney.Application.Messages.Notifications.Trips;
 using FleetJourney.Application.Messages.Queries.Employees;
 using FleetJourney.Application.Messages.Queries.Trips;
 using FleetJourney.Application.Services.Abstractions;
@@ -55,13 +56,13 @@ internal sealed class TripService : ITripService
         }, cancellationToken);
     }
 
-    public Task<Trip?> GetByCarPlateNumberAsync(string licensePlateNumber, CancellationToken cancellationToken)
+    public Task<Trip?> GetTripByCarIdAsync(Guid carId, CancellationToken cancellationToken)
     {
-        return _cacheService.GetOrCreateAsync(CacheKeys.Trips.GetByLicensePlateNumber(licensePlateNumber), async () =>
+        return _cacheService.GetOrCreateAsync(CacheKeys.Trips.GetByCarId(carId), async () =>
         {
-            var trip = await _sender.Send(new GetTripByCarPlateNumberQuery
+            var trip = await _sender.Send(new GetTripByCarIdQuery
             {
-                LicensePlateNumber = licensePlateNumber
+                CarId = carId
             }, cancellationToken);
 
             return trip;
@@ -75,14 +76,6 @@ internal sealed class TripService : ITripService
             Trip = trip
         }, cancellationToken);
 
-        if (isCreated)
-        {
-            await _cacheService.RemoveAsync(CacheKeys.Trips.GetAll, cancellationToken);
-            await _cacheService.RemoveAsync(CacheKeys.Trips.Get(trip.Id), cancellationToken);
-            await _cacheService.RemoveAsync(CacheKeys.Trips.GetAllByEmployeeId(trip.EmployeeId), cancellationToken);
-            await _cacheService.RemoveAsync(CacheKeys.Trips.GetByLicensePlateNumber(trip.LicensePlateNumber), cancellationToken);
-        }
-
         return isCreated;
     }
 
@@ -93,14 +86,6 @@ internal sealed class TripService : ITripService
             Trip = trip
         }, cancellationToken);
 
-        if (result is not null)
-        {
-            await _cacheService.RemoveAsync(CacheKeys.Trips.GetAll, cancellationToken);
-            await _cacheService.RemoveAsync(CacheKeys.Trips.Get(trip.Id), cancellationToken);
-            await _cacheService.RemoveAsync(CacheKeys.Trips.GetAllByEmployeeId(trip.EmployeeId), cancellationToken);
-            await _cacheService.RemoveAsync(CacheKeys.Trips.GetByLicensePlateNumber(trip.LicensePlateNumber), cancellationToken);
-        }
-
         return result;
     }
 
@@ -110,12 +95,6 @@ internal sealed class TripService : ITripService
         {
             Id = tripId
         }, cancellationToken);
-
-        if (isDeleted)
-        {
-            await _cacheService.RemoveAsync(CacheKeys.Trips.GetAll, cancellationToken);
-            await _cacheService.RemoveAsync(CacheKeys.Trips.Get(tripId), cancellationToken);
-        }
 
         return isDeleted;
     }

@@ -1,5 +1,7 @@
 ﻿using FleetJourney.Application.Attributes;
+using Mediator;
 using Microsoft.Extensions.DependencyInjection;
+using Scrutor;
 
 namespace FleetJourney.Application.Extensions;
 

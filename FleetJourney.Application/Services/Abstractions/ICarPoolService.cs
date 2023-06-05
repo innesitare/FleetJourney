@@ -6,11 +6,11 @@ public interface ICarPoolService
 {
     Task<IEnumerable<Car>> GetAllAsync(CancellationToken cancellationToken);
 
-    Task<Car?> GetAsync(string licensePlateNumber, CancellationToken cancellationToken);
+    Task<Car?> GetAsync(Guid id, CancellationToken cancellationToken);
 
     Task<bool> CreateAsync(Car car, CancellationToken cancellationToken);
     
     Task<Car?> UpdateAsync(Car car, CancellationToken cancellationToken);
     
-    Task<bool> DeleteAsync(string licensePlateNumber, CancellationToken cancellationToken);
+    Task<bool> DeleteAsync(Guid id, CancellationToken cancellationToken);
 }

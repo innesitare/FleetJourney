@@ -11,10 +11,6 @@ public sealed class TripResponseValidator : AbstractValidator<TripResponse>
             .NotEmpty()
             .WithMessage("Trip ID is required.");
 
-        RuleFor(response => response.LicensePlateNumber)
-            .NotEmpty()
-            .WithMessage("License plate number is required.");
-
         RuleFor(response => response.StartMileage)
             .GreaterThan('0')
             .WithMessage("Start mileage must be greater than zero.");
@@ -26,5 +22,9 @@ public sealed class TripResponseValidator : AbstractValidator<TripResponse>
         RuleFor(response => response.EmployeeId)
             .NotEmpty()
             .WithMessage("Employee ID is required.");
+        
+        RuleFor(response => response.CarId)
+            .NotEmpty()
+            .WithMessage("Car ID is required.");
     }
 }

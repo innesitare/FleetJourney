@@ -4,6 +4,8 @@ namespace FleetJourney.Domain.CarPool;
 
 public sealed class Car
 {
+    public Guid Id { get; init; } = Guid.NewGuid();
+    
     public required string LicensePlateNumber { get; init; }
     
     public required string Brand { get; init; }

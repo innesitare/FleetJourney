@@ -7,6 +7,10 @@ public sealed class CarResponseValidator : AbstractValidator<CarResponse>
 {
     public CarResponseValidator()
     {
+        RuleFor(response => response.Id)
+            .NotEmpty()
+            .WithMessage("Id is required.");
+        
         RuleFor(response => response.LicensePlateNumber)
             .NotEmpty()
             .WithMessage("License plate number is required.");

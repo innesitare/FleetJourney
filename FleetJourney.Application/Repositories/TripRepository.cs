@@ -1,4 +1,5 @@
-﻿using FleetJourney.Application.Repositories.Abstractions;
+﻿using FleetJourney.Application.Extensions;
+using FleetJourney.Application.Repositories.Abstractions;
 using FleetJourney.Domain.Trips;
 using FleetJourney.Infrastructure.Persistence.Abstractions;
 using Microsoft.EntityFrameworkCore;
@@ -39,8 +40,7 @@ internal sealed class TripRepository : ITripRepository
 
         return trips;
     }
-
-
+    
     public async Task<Trip?> GetAsync(Guid tripId, CancellationToken cancellationToken)
     {
         var trip = await _applicationDbContext.Trips.FindAsync(new object?[] {tripId}, cancellationToken);
@@ -48,19 +48,16 @@ internal sealed class TripRepository : ITripRepository
         return trip;
     }
 
-    public async Task<Trip?> GetByCarPlateNumberAsync(string licensePlateNumber, CancellationToken cancellationToken)
+    public async Task<Trip?> GetByCarIdAsync(Guid carId, CancellationToken cancellationToken)
     {
         var trip = await _applicationDbContext.Trips
-            .FirstOrDefaultAsync(t => t.LicensePlateNumber == licensePlateNumber, cancellationToken);
+            .FirstOrDefaultAsync(t => t.CarId == carId, cancellationToken);
 
         return trip;
     }
 
     public async Task<bool> CreateAsync(Trip trip, CancellationToken cancellationToken)
     {
-        bool exists = await _applicationDbContext.Trips
-            .AnyAsync(t => t.LicensePlateNumber == trip.LicensePlateNumber, cancellationToken);
-
         await _applicationDbContext.Trips.AddAsync(trip, cancellationToken);
         int result = await _applicationDbContext.SaveChangesAsync(cancellationToken);
 
@@ -69,12 +66,6 @@ internal sealed class TripRepository : ITripRepository
 
     public async Task<Trip?> UpdateAsync(Trip trip, CancellationToken cancellationToken)
     {
-        bool isContains = await _applicationDbContext.Trips.ContainsAsync(trip, cancellationToken);
-        if (!isContains)
-        {
-            return null;
-        }
-
         _applicationDbContext.Trips.Update(trip);
         await _applicationDbContext.SaveChangesAsync(cancellationToken);
 

@@ -10,7 +10,7 @@ public interface ITripService
 
     Task<Trip?> GetAsync(Guid tripId, CancellationToken cancellationToken);
 
-    Task<Trip?> GetByCarPlateNumberAsync(string licensePlateNumber, CancellationToken cancellationToken);
+    Task<Trip?> GetTripByCarIdAsync(Guid carId, CancellationToken cancellationToken);
 
     Task<bool> CreateAsync(Trip trip, CancellationToken cancellationToken);
 

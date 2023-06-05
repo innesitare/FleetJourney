@@ -60,14 +60,7 @@ internal sealed class EmployeeService : IEmployeeService
         {
             Employee = employee
         }, cancellationToken);
-
-        if (isCreated)
-        {
-            await _cacheService.RemoveAsync(CacheKeys.Employees.GetAll, cancellationToken);
-            await _cacheService.RemoveAsync(CacheKeys.Employees.Get(employee.Id), cancellationToken);
-            await _cacheService.RemoveAsync(CacheKeys.Employees.GetByEmail(employee.Email), cancellationToken);
-        }
-
+        
         return isCreated;
     }
 
@@ -77,14 +70,7 @@ internal sealed class EmployeeService : IEmployeeService
         {
             Employee = employee
         }, cancellationToken);
-
-        if (result is not null)
-        {
-            await _cacheService.RemoveAsync(CacheKeys.Employees.GetAll, cancellationToken);
-            await _cacheService.RemoveAsync(CacheKeys.Employees.Get(employee.Id), cancellationToken);
-            await _cacheService.RemoveAsync(CacheKeys.Employees.GetByEmail(employee.Email), cancellationToken);
-        }
-
+        
         return result;
     }
 
@@ -94,13 +80,7 @@ internal sealed class EmployeeService : IEmployeeService
         {
             Id = id
         }, cancellationToken);
-
-        if (isDeleted)
-        {
-            await _cacheService.RemoveAsync(CacheKeys.Employees.GetAll, cancellationToken);
-            await _cacheService.RemoveAsync(CacheKeys.Employees.Get(id), cancellationToken);
-        }
-
+        
         return isDeleted;
     }
 }

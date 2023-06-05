@@ -1,4 +1,5 @@
-﻿using FleetJourney.Application.Repositories.Abstractions;
+﻿using FleetJourney.Application.Messages.Notifications.Employees;
+using FleetJourney.Application.Repositories.Abstractions;
 using FleetJourney.Domain.Messages.Employees;
 using MassTransit;
 using Mediator;
@@ -9,11 +10,14 @@ public sealed class DeleteEmployeeCommandHandler : ICommandHandler<DeleteEmploye
 {
     private readonly IEmployeeRepository _employeeRepository;
     private readonly ISendEndpointProvider _sendEndpointProvider;
+    private readonly IPublisher _publisher;
 
-    public DeleteEmployeeCommandHandler(IEmployeeRepository employeeRepository, ISendEndpointProvider sendEndpointProvider)
+    public DeleteEmployeeCommandHandler(IEmployeeRepository employeeRepository,
+        ISendEndpointProvider sendEndpointProvider, IPublisher publisher)
     {
         _employeeRepository = employeeRepository;
         _sendEndpointProvider = sendEndpointProvider;
+        _publisher = publisher;
     }
 
     public async ValueTask<bool> Handle(DeleteEmployeeCommand command, CancellationToken cancellationToken)
@@ -24,10 +28,15 @@ public sealed class DeleteEmployeeCommandHandler : ICommandHandler<DeleteEmploye
             var sendEndpoint = await _sendEndpointProvider.GetSendEndpoint(new Uri("queue:delete-employee"));
             await sendEndpoint.Send<DeleteEmployee>(new
             {
-                employee.Email
+                Id = employee.Id
+            }, cancellationToken);
+
+            await _publisher.Publish(new DeleteEmployeeMessage
+            {
+                Id = employee.Id
             }, cancellationToken);
         }
-        
+
         bool deleted = await _employeeRepository.DeleteAsync(command.Id, cancellationToken);
         return deleted;
     }

@@ -7,10 +7,6 @@ public sealed class CreateTripRequestValidator : AbstractValidator<CreateTripReq
 {
     public CreateTripRequestValidator()
     {
-        RuleFor(request => request.LicensePlateNumber)
-            .NotEmpty()
-            .WithMessage("License plate number is required.");
-
         RuleFor(request => request.StartMileage)
             .GreaterThan('0')
             .WithMessage("Start mileage must be greater than zero.");
@@ -22,5 +18,10 @@ public sealed class CreateTripRequestValidator : AbstractValidator<CreateTripReq
         RuleFor(request => request.EmployeeId)
             .NotEmpty()
             .WithMessage("Employee ID is required.");
+        
+        RuleFor(request => request.CarId)
+            .NotEmpty()
+            .WithMessage("Car ID is required.");
+
     }
 }

@@ -28,13 +28,13 @@ internal sealed class CarPoolService : ICarPoolService
         }, cancellationToken);
     }
 
-    public Task<Car?> GetAsync(string licensePlateNumber, CancellationToken cancellationToken)
+    public Task<Car?> GetAsync(Guid id, CancellationToken cancellationToken)
     {
-        return _cacheService.GetOrCreateAsync(CacheKeys.CarPool.Get(licensePlateNumber), async () =>
+        return _cacheService.GetOrCreateAsync(CacheKeys.CarPool.Get(id), async () =>
         {
-            var car = await _sender.Send(new GetCarByNumberQuery
+            var car = await _sender.Send(new GetCarByIdQuery
             {
-                LicensePlateNumber = licensePlateNumber
+                Id = id
             }, cancellationToken);
 
             return car;
@@ -47,13 +47,7 @@ internal sealed class CarPoolService : ICarPoolService
         {
             Car = car
         }, cancellationToken);
-
-        if (isCreated)
-        {
-            await _cacheService.RemoveAsync(CacheKeys.CarPool.GetAll, cancellationToken);
-            await _cacheService.RemoveAsync(CacheKeys.CarPool.Get(car.LicensePlateNumber), cancellationToken);
-        }
-
+        
         return isCreated;
     }
 
@@ -64,28 +58,16 @@ internal sealed class CarPoolService : ICarPoolService
             Car = car
         }, cancellationToken);
 
-        if (result is not null)
-        {
-            await _cacheService.RemoveAsync(CacheKeys.CarPool.GetAll, cancellationToken);
-            await _cacheService.RemoveAsync(CacheKeys.CarPool.Get(car.LicensePlateNumber), cancellationToken);
-        }
-
         return result;
     }
 
-    public async Task<bool> DeleteAsync(string licensePlateNumber, CancellationToken cancellationToken)
+    public async Task<bool> DeleteAsync(Guid id, CancellationToken cancellationToken)
     {
         bool isDeleted = await _sender.Send(new DeleteCarCommand
         {
-            LicensePlateNumber = licensePlateNumber
+            Id = id
         }, cancellationToken);
-
-        if (isDeleted)
-        {
-            await _cacheService.RemoveAsync(CacheKeys.CarPool.GetAll, cancellationToken);
-            await _cacheService.RemoveAsync(CacheKeys.CarPool.Get(licensePlateNumber), cancellationToken);
-        }
-
+        
         return isDeleted;
     }
 }

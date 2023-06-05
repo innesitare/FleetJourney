@@ -13,7 +13,6 @@ public sealed class GetAllCarsQueryHandler : IQueryHandler<GetAllCarsQuery, IEnu
         _carPoolRepository = carPoolRepository;
     }
 
-
     public async ValueTask<IEnumerable<Car>> Handle(GetAllCarsQuery query, CancellationToken cancellationToken)
     {
         var cars = await _carPoolRepository.GetAllAsync(cancellationToken);

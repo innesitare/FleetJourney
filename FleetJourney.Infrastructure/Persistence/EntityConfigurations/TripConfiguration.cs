@@ -20,9 +20,6 @@ public sealed class TripConfiguration : IEntityTypeConfiguration<Trip>
         builder.Property(t => t.IsPrivateTrip)
             .IsRequired();
         
-        builder.HasIndex(t => t.LicensePlateNumber)
-            .IsUnique();
-        
         builder.HasIndex(t => t.Id)
             .IsUnique()
             .IsDescending(false);

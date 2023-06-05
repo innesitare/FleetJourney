@@ -4,6 +4,8 @@ namespace FleetJourney.Application.Contracts.Responses.CarPool;
 
 public sealed class CarResponse
 {
+    public required Guid Id { get; init; }
+    
     public required string LicensePlateNumber { get; init; }
     
     public required string Brand { get; init; }

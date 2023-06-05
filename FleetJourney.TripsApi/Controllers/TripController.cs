@@ -47,11 +47,11 @@ public sealed class TripController : ControllerBase
             : NotFound();
     }
 
-    [HttpGet(ApiEndpoints.Trips.GetByLicensePlateNumber)]
-    public async Task<IActionResult> GetTripByLicensePlateNumber([FromRoute] string licensePlateNumber,
+    [HttpGet(ApiEndpoints.Trips.GetByCarId)]
+    public async Task<IActionResult> GetTripByCarId([FromRoute] Guid carId,
         CancellationToken cancellationToken)
     {
-        var trip = await _tripService.GetByCarPlateNumberAsync(licensePlateNumber, cancellationToken);
+        var trip = await _tripService.GetTripByCarIdAsync(carId, cancellationToken);
 
         return trip is not null
             ? Ok(trip.ToResponse())

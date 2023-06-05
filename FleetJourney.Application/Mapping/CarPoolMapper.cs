@@ -14,9 +14,9 @@ public static partial class CarPoolMapper
 
     public static partial Car ToCar(this UpdateCarRequest request);
 
-    public static Car ToCar(this UpdateCarRequest request, string licensePlateNumber)
+    public static Car ToCar(this UpdateCarRequest request, Guid carId)
     {
-        request.LicensePlateNumber = licensePlateNumber;
+        request.Id = carId;
         return request.ToCar();
     }
 }

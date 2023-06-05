@@ -34,7 +34,7 @@ internal sealed class EmployeeRepository : IEmployeeRepository
             return null;
         }
 
-        await _applicationDbContext.Employees.LoadDataAsync(employee, e => e.Trips);
+        await _applicationDbContext.Employees.LoadDataAsync(employee, e => e.Trips!);
         return employee;
     }
 
@@ -43,7 +43,7 @@ internal sealed class EmployeeRepository : IEmployeeRepository
         var employee = await _applicationDbContext.Employees
             .FirstOrDefaultAsync(e => e.Email == email, cancellationToken);
 
-        await _applicationDbContext.Employees.LoadDataAsync(employee!, e => e.Trips);
+        await _applicationDbContext.Employees.LoadDataAsync(employee!, e => e.Trips!);
         return employee;
     }
 

@@ -12,7 +12,7 @@ internal static class CacheKeys
     public static class CarPool
     {
         public static string GetAll => "cars-all";
-        public static string Get(string licensePlateNumber) => $"cars-{licensePlateNumber}";
+        public static string Get(Guid carId) => $"cars-{carId}";
     }
 
     public static class Trips
@@ -20,6 +20,6 @@ internal static class CacheKeys
         public static string GetAll => "trips-all";
         public static string GetAllByEmployeeId(Guid employeeId) => $"trips-{employeeId}-all";
         public static string Get(Guid tripId) => $"trips-{tripId}";
-        public static string GetByLicensePlateNumber(string licensePlateNumber) => $"trips-{licensePlateNumber}";
+        public static string GetByCarId(Guid carId) => $"trips-{carId}";
     }
 }

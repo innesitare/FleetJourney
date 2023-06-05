@@ -21,13 +21,13 @@ namespace FleetJourney.Infrastructure.Migrations
 
             modelBuilder.Entity("FleetJourney.Domain.CarPool.Car", b =>
                 {
-                    b.Property<string>("LicensePlateNumber")
-                        .HasColumnType("varchar(255)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
 
                     b.Property<string>("Brand")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .IsUnicode(false)
                         .HasColumnType("varchar(50)");
 
                     b.Property<uint>("CurrentMileage")
@@ -36,16 +36,25 @@ namespace FleetJourney.Infrastructure.Migrations
                     b.Property<uint>("EndOfLifeMileage")
                         .HasColumnType("int unsigned");
 
+                    b.Property<string>("LicensePlateNumber")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)");
+
                     b.Property<uint>("MaintenanceInterval")
                         .HasColumnType("int unsigned");
 
                     b.Property<string>("Model")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .IsUnicode(false)
                         .HasColumnType("varchar(50)");
 
-                    b.HasKey("LicensePlateNumber");
+                    b.HasKey("Id");
+
+                    b.HasAlternateKey("LicensePlateNumber");
+
+                    b.HasIndex("Id")
+                        .IsUnique();
 
                     b.ToTable("CarPool", (string)null);
                 });
@@ -91,6 +100,9 @@ namespace FleetJourney.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
+                    b.Property<Guid>("CarId")
+                        .HasColumnType("char(36)");
+
                     b.Property<Guid>("EmployeeId")
                         .HasColumnType("char(36)");
 
@@ -100,21 +112,16 @@ namespace FleetJourney.Infrastructure.Migrations
                     b.Property<bool>("IsPrivateTrip")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<string>("LicensePlateNumber")
-                        .IsRequired()
-                        .HasColumnType("varchar(255)");
-
                     b.Property<uint>("StartMileage")
                         .HasColumnType("int unsigned");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CarId");
+
                     b.HasIndex("EmployeeId");
 
                     b.HasIndex("Id")
-                        .IsUnique();
-
-                    b.HasIndex("LicensePlateNumber")
                         .IsUnique();
 
                     b.ToTable("Trips", (string)null);
@@ -122,15 +129,15 @@ namespace FleetJourney.Infrastructure.Migrations
 
             modelBuilder.Entity("FleetJourney.Domain.Trips.Trip", b =>
                 {
-                    b.HasOne("FleetJourney.Domain.EmployeeInfo.Employee", null)
+                    b.HasOne("FleetJourney.Domain.CarPool.Car", null)
                         .WithMany("Trips")
-                        .HasForeignKey("EmployeeId")
+                        .HasForeignKey("CarId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FleetJourney.Domain.CarPool.Car", null)
+                    b.HasOne("FleetJourney.Domain.EmployeeInfo.Employee", null)
                         .WithMany("Trips")
-                        .HasForeignKey("LicensePlateNumber")
+                        .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

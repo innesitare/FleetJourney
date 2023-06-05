@@ -6,8 +6,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleetJourney.Application", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleetJourney.Domain", "FleetJourney.Domain\FleetJourney.Domain.csproj", "{7B3D910F-D706-474A-BE12-913F8E345968}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleetJourney.GUI", "FleetJourney.GUI\FleetJourney.GUI.csproj", "{1B42459B-AA8E-4C6D-AB7D-7B832B67BC89}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleetJourney.CarPoolApi", "FleetJourney.CarPoolApi\FleetJourney.CarPoolApi.csproj", "{AC3F653A-CBB0-4937-8A1C-E49D4EF68C3E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleetJourney.TripsApi", "FleetJourney.TripsApi\FleetJourney.TripsApi.csproj", "{B01D6854-53CF-42D9-B55C-D2066369B679}"
@@ -39,10 +37,6 @@ Global
 		{7B3D910F-D706-474A-BE12-913F8E345968}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B3D910F-D706-474A-BE12-913F8E345968}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B3D910F-D706-474A-BE12-913F8E345968}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1B42459B-AA8E-4C6D-AB7D-7B832B67BC89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1B42459B-AA8E-4C6D-AB7D-7B832B67BC89}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1B42459B-AA8E-4C6D-AB7D-7B832B67BC89}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1B42459B-AA8E-4C6D-AB7D-7B832B67BC89}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AC3F653A-CBB0-4937-8A1C-E49D4EF68C3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AC3F653A-CBB0-4937-8A1C-E49D4EF68C3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC3F653A-CBB0-4937-8A1C-E49D4EF68C3E}.Release|Any CPU.ActiveCfg = Release|Any CPU

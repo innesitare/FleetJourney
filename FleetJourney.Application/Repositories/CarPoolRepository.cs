@@ -26,10 +26,10 @@ internal sealed class CarPoolRepository : ICarPoolRepository
         return _applicationDbContext.Cars.Include(c => c.Trips);
     }
 
-    public async Task<Car?> GetAsync(string licensePlateNumber, CancellationToken cancellationToken)
+    public async Task<Car?> GetAsync(Guid id, CancellationToken cancellationToken)
     {
-        var car = await _applicationDbContext.Cars.FindAsync(new object?[] {licensePlateNumber}, cancellationToken);
-        await _applicationDbContext.Cars.LoadDataAsync(car!, c => c.Trips);
+        var car = await _applicationDbContext.Cars.FindAsync(new object?[] {id}, cancellationToken);
+        await _applicationDbContext.Cars.LoadDataAsync(car!, c => c.Trips!);
         
         return car;
     }
@@ -56,10 +56,10 @@ internal sealed class CarPoolRepository : ICarPoolRepository
         return car;
     }
 
-    public async Task<bool> DeleteAsync(string licensePlateNumber, CancellationToken cancellationToken)
+    public async Task<bool> DeleteAsync(Guid id, CancellationToken cancellationToken)
     {
         int result = await _applicationDbContext.Cars
-            .Where(c => c.LicensePlateNumber == licensePlateNumber)
+            .Where(c => c.Id == id)
             .ExecuteDeleteAsync(cancellationToken);
 
         return result > 0;

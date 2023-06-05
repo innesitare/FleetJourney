@@ -2,6 +2,6 @@
 
 namespace FleetJourney.Application.Repositories.Abstractions;
 
-public interface ICarPoolRepository : IRepository<Car, string>
+public interface ICarPoolRepository : IRepository<Car, Guid>
 {
 }

@@ -4,18 +4,18 @@ using Mediator;
 
 namespace FleetJourney.Application.Messages.Queries.Trips.Handlers;
 
-public sealed class GetTripByCarPlateNumberQueryHandler : IQueryHandler<GetTripByCarPlateNumberQuery, Trip?>
+public sealed class GetTripByCarIdQueryHandler : IQueryHandler<GetTripByCarIdQuery, Trip?>
 {
     private readonly ITripRepository _tripRepository;
 
-    public GetTripByCarPlateNumberQueryHandler(ITripRepository tripRepository)
+    public GetTripByCarIdQueryHandler(ITripRepository tripRepository)
     {
         _tripRepository = tripRepository;
     }
 
-    public async ValueTask<Trip?> Handle(GetTripByCarPlateNumberQuery query, CancellationToken cancellationToken)
+    public async ValueTask<Trip?> Handle(GetTripByCarIdQuery query, CancellationToken cancellationToken)
     {
-        var trip = await _tripRepository.GetByCarPlateNumberAsync(query.LicensePlateNumber, cancellationToken);
+        var trip = await _tripRepository.GetByCarIdAsync(query.CarId, cancellationToken);
 
         return trip;
     }
