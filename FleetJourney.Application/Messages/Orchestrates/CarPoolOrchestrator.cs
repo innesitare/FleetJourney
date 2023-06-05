@@ -12,9 +12,9 @@ public sealed class CarPoolOrchestrator :
     IConsumer<DeleteCar>
 {
     private readonly ICarPoolService _carPoolService;
-    private readonly ILogger<EmployeeOrchestrator> _logger;
+    private readonly ILogger<CarPoolOrchestrator> _logger;
 
-    public CarPoolOrchestrator(ICarPoolService carPoolService, ILogger<EmployeeOrchestrator> logger)
+    public CarPoolOrchestrator(ICarPoolService carPoolService, ILogger<CarPoolOrchestrator> logger)
     {
         _carPoolService = carPoolService;
         _logger = logger;
@@ -22,27 +22,35 @@ public sealed class CarPoolOrchestrator :
 
     public async Task Consume(ConsumeContext<CreateCar> context)
     {
-        _logger.LogInformation("Creating car with number: {PlateNumber}", context.Message.LicensePlateNumber);
-        await _carPoolService.CreateAsync(new Car
+        var message = context.Message;
+        _logger.LogInformation("Creating car with number: {PlateNumber}", message.LicensePlateNumber);
+
+        var car = new Car
         {
-            LicensePlateNumber = context.Message.LicensePlateNumber,
-            Brand = context.Message.Brand,
-            Model = context.Message.Model,
-            EndOfLifeMileage = context.Message.EndOfLifeMileage,
-            MaintenanceInterval = context.Message.MaintenanceInterval,
-            CurrentMileage = context.Message.CurrentMileage
-        }, context.CancellationToken);
+            LicensePlateNumber = message.LicensePlateNumber,
+            Brand = message.Brand,
+            Model = message.Model,
+            EndOfLifeMileage = message.EndOfLifeMileage,
+            MaintenanceInterval = message.MaintenanceInterval,
+            CurrentMileage = message.CurrentMileage
+        };
+        
+        await _carPoolService.CreateAsync(car, context.CancellationToken);
     }
 
     public async Task Consume(ConsumeContext<UpdateCar> context)
     {
-        _logger.LogInformation("Updating car with number: {PlateNumber}", context.Message.Car.LicensePlateNumber);
-        await _carPoolService.UpdateAsync(context.Message.Car, context.CancellationToken);
+        var message = context.Message;
+        _logger.LogInformation("Updating car with number: {PlateNumber}", message.Car.LicensePlateNumber);
+        
+        await _carPoolService.UpdateAsync(message.Car, context.CancellationToken);
     }
 
     public async Task Consume(ConsumeContext<DeleteCar> context)
     {
-        _logger.LogInformation("Deleting car with number: {PlateNumber}", context.Message.LicensePlateNumber);
-        await _carPoolService.DeleteAsync(context.Message.LicensePlateNumber, context.CancellationToken);
+        var message = context.Message;
+        _logger.LogInformation("Deleting car with number: {PlateNumber}", message.LicensePlateNumber);
+        
+        await _carPoolService.DeleteAsync(message.LicensePlateNumber, context.CancellationToken);
     }
 }

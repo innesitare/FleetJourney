@@ -22,27 +22,34 @@ public sealed class TripOrchestrator :
 
     public async Task Consume(ConsumeContext<CreateTrip> context)
     {
-        _logger.LogInformation("Creating trip for employee with Id: {@EmployeeId}", context.Message.EmployeeId);
-        await _tripService.CreateAsync(new Trip
+        var message = context.Message;
+        _logger.LogInformation("Creating trip for employee with Id: {EmployeeId}", message.EmployeeId);
+
+        var trip = new Trip
         {
-            LicensePlateNumber = context.Message.LicensePlateNumber,
-            StartMileage = context.Message.StartMileage,
-            EndMileage = context.Message.EndMileage,
-            IsPrivateTrip = context.Message.IsPrivateTrip,
-            EmployeeId = context.Message.EmployeeId,
-        }, context.CancellationToken);
-        
+            LicensePlateNumber = message.LicensePlateNumber,
+            StartMileage = message.StartMileage,
+            EndMileage = message.EndMileage,
+            IsPrivateTrip = message.IsPrivateTrip,
+            EmployeeId = message.EmployeeId,
+        };
+
+        await _tripService.CreateAsync(trip, context.CancellationToken);
     }
 
     public async Task Consume(ConsumeContext<UpdateTrip> context)
     {
-        _logger.LogInformation("Updating trip with id: {@Id}", context.Message.Trip.Id);
-        await _tripService.UpdateAsync(context.Message.Trip, context.CancellationToken);
+        var message = context.Message;
+        _logger.LogInformation("Updating trip with id: {Id}", message.Trip.Id);
+        
+        await _tripService.UpdateAsync(message.Trip, context.CancellationToken);
     }
 
     public async Task Consume(ConsumeContext<DeleteTrip> context)
     {
-        _logger.LogInformation("Deleting trip with id: {@Id}", context.Message.Id);
-        await _tripService.DeleteAsync(context.Message.Id, context.CancellationToken);
+        var message = context.Message;
+        _logger.LogInformation("Deleting trip with id: {Id}", message.Id);
+        
+        await _tripService.DeleteAsync(message.Id, context.CancellationToken);
     }
 }

@@ -13,7 +13,7 @@ public sealed class EmployeeOrchestrator :
 {
     private readonly IEmployeeService _employeeService;
     private readonly ILogger<EmployeeOrchestrator> _logger;
-    
+        
     public EmployeeOrchestrator(IEmployeeService employeeService, ILogger<EmployeeOrchestrator> logger)
     {
         _employeeService = employeeService;
@@ -22,25 +22,33 @@ public sealed class EmployeeOrchestrator :
 
     public async Task Consume(ConsumeContext<CreateEmployee> context)
     {
-        _logger.LogInformation("Creating employee with email: {@Email}", context.Message.Email);
-        await _employeeService.CreateAsync(new Employee
+        var message = context.Message;
+        _logger.LogInformation("Creating employee with email: {Email}", message.Email);
+            
+        var employee = new Employee
         {
-            Email = context.Message.Email,
-            Name = context.Message.Name,
-            LastName = context.Message.LastName,
-            Birthdate = context.Message.Birthdate
-        }, context.CancellationToken);
+            Email = message.Email,
+            Name = message.Name,
+            LastName = message.LastName,
+            Birthdate = message.Birthdate
+        };
+            
+        await _employeeService.CreateAsync(employee, context.CancellationToken);
     }
 
     public async Task Consume(ConsumeContext<UpdateEmployee> context)
     {
-        _logger.LogInformation("Updating employee with email: {Email}", context.Message.Employee.Email);
-        await _employeeService.UpdateAsync(context.Message.Employee, context.CancellationToken);
+        var message = context.Message;
+        _logger.LogInformation("Updating employee with email: {Email}", message.Employee.Email);
+        
+        await _employeeService.UpdateAsync(message.Employee, context.CancellationToken);
     }
 
     public async Task Consume(ConsumeContext<DeleteEmployee> context)
     {      
-        _logger.LogInformation("Deleting employee with id: {@Id}", context.Message.Id);
-        await _employeeService.DeleteAsync(context.Message.Id, context.CancellationToken);
+        var message = context.Message;
+        _logger.LogInformation("Deleting employee with id: {Id}", message.Id);
+        
+        await _employeeService.DeleteAsync(message.Id, context.CancellationToken);
     }
 }
