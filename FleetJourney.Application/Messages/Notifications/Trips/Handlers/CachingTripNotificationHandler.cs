@@ -56,7 +56,9 @@ public sealed class CachingTripNotificationHandler :
         
         await _cacheService.RemoveCachesAsync(cancellationToken, 
             CacheKeys.Trips.GetAll,
-            CacheKeys.Trips.Get(tripId)
+            CacheKeys.Trips.Get(tripId),
+            CacheKeys.CarPool.GetAll,
+            CacheKeys.Employees.GetAll
         );
     }
 }

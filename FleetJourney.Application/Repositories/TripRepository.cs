@@ -58,6 +58,15 @@ internal sealed class TripRepository : ITripRepository
 
     public async Task<bool> CreateAsync(Trip trip, CancellationToken cancellationToken)
     {
+        bool carExists = await _applicationDbContext.Cars.ExistsAsync(c => c.Id, trip.CarId, cancellationToken);
+        bool employeeExists = await _applicationDbContext.Employees
+            .ExistsAsync(e => e.Id, trip.EmployeeId, cancellationToken);
+
+        if (!carExists || !employeeExists)
+        {
+            return false;
+        }
+        
         await _applicationDbContext.Trips.AddAsync(trip, cancellationToken);
         int result = await _applicationDbContext.SaveChangesAsync(cancellationToken);
 
@@ -66,6 +75,15 @@ internal sealed class TripRepository : ITripRepository
 
     public async Task<Trip?> UpdateAsync(Trip trip, CancellationToken cancellationToken)
     {
+        bool carExists = await _applicationDbContext.Cars.ExistsAsync(c => c.Id, trip.CarId, cancellationToken);
+        bool employeeExists = await _applicationDbContext.Employees
+            .ExistsAsync(e => e.Id, trip.EmployeeId, cancellationToken);
+        
+        if (!carExists || !employeeExists)
+        {
+            return null;
+        }
+        
         _applicationDbContext.Trips.Update(trip);
         await _applicationDbContext.SaveChangesAsync(cancellationToken);
 

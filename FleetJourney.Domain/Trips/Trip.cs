@@ -1,7 +1,4 @@
-﻿using FleetJourney.Domain.CarPool;
-using FleetJourney.Domain.EmployeeInfo;
-
-namespace FleetJourney.Domain.Trips;
+﻿namespace FleetJourney.Domain.Trips;
 
 public sealed class Trip
 {

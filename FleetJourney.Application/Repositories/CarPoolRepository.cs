@@ -29,8 +29,12 @@ internal sealed class CarPoolRepository : ICarPoolRepository
     public async Task<Car?> GetAsync(Guid id, CancellationToken cancellationToken)
     {
         var car = await _applicationDbContext.Cars.FindAsync(new object?[] {id}, cancellationToken);
-        await _applicationDbContext.Cars.LoadDataAsync(car!, c => c.Trips!);
+        if (car is null)
+        {
+            return null;
+        }
         
+        await _applicationDbContext.Cars.LoadDataAsync(car!, c => c.Trips!);
         return car;
     }
 

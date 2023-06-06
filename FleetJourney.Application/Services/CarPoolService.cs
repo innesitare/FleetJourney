@@ -40,7 +40,7 @@ internal sealed class CarPoolService : ICarPoolService
             return car;
         }, cancellationToken);
     }
-
+    
     public async Task<bool> CreateAsync(Car car, CancellationToken cancellationToken)
     {
         bool isCreated = await _sender.Send(new CreateCarCommand
