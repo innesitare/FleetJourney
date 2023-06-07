@@ -118,8 +118,8 @@ const Settings = () => {
                         type="email"
                         name="emailAddress"
                         id="emailAddress"
-                        placeholder="devidjond45@gmail.com"
-                        defaultValue="devidjond45@gmail.com"
+                        placeholder="employee@gmail.com"
+                        defaultValue=""
                       />
                     </div>
                   </div>

@@ -1,4 +1,3 @@
-import DarkModeSwitcher from '../controls/DarkModeSwitcher.tsx';
 import DropdownUser from '../controls/DropdownUser.tsx';
 
 const Header = (props: {
@@ -51,16 +50,12 @@ const Header = (props: {
             </span>
           </button>
           {/* <!-- Hamburger Toggle BTN --> */}
-
         </div>
           <div className="hidden sm:block">
         </div>
 
         <div className="flex items-center gap-3 2xsm:gap-7">
           <ul className="flex items-center gap-2 2xsm:gap-4">
-            {/* <!-- Dark Mode Toggler --> */}
-            <DarkModeSwitcher />
-            {/* <!-- Dark Mode Toggler --> */}
           </ul>
           {/* <!-- User Area --> */}
           <DropdownUser />
