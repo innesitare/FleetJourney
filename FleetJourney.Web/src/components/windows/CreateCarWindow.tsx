@@ -1,12 +1,14 @@
-import React, {useState} from "react";
-import {Car} from "../../models/Car.ts";
+import React, { useState } from "react";
+import { Car } from "../../models/Car.ts";
+
+import CarPoolService from "../../services/CarPoolService.ts";
 
 type CreateCarWindowProperties = {
     onClose: () => void;
     onCarCreated: (car: Car) => void;
-}
+};
 
-const CreateCarWindow : React.FC<CreateCarWindowProperties> = ({onClose, onCarCreated,}) => {
+const CreateCarWindow: React.FC<CreateCarWindowProperties> = ({onClose, onCarCreated}) => {
     const [newCar, setNewCar] = useState<Car>({
         id: "",
         licensePlateNumber: "",
@@ -26,20 +28,9 @@ const CreateCarWindow : React.FC<CreateCarWindowProperties> = ({onClose, onCarCr
     };
 
     const handleSaveClick = async () => {
-        try {
-            await fetch("http://localhost:8080/api/cars", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(newCar),
-            });
-
-            onCarCreated(newCar);
-            onClose();
-        } catch (error) {
-            console.error("Error creating car", error);
-        }
+        const createdCar: Car = await CarPoolService.createCar(newCar);
+        onCarCreated(createdCar);
+        onClose();
     };
 
     const handleCancelClick = () => {

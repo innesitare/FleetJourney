@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import {Car} from "../../models/Car.ts";
-import CreateCarWindow from "../windows/CreateCarWindow.tsx";
-import UpdateCarWindow from "../windows/UpdateCarWindow.tsx";
+import { Car } from "../../models/Car";
+import CreateCarWindow from "../windows/CreateCarWindow";
+import UpdateCarWindow from "../windows/UpdateCarWindow";
+import CarPoolService from "../../services/CarPoolService";
 
 const CarPoolTable = () => {
-    const [carData, setCarData] = useState<Car[]>([]);
     const [selectedCar, setSelectedCar] = useState<Car | null>(null);
+    const [carData, setCarData] = useState<Car[]>([]);
     const [isCreateWindowVisible, setIsCreateWindowVisible] = useState(false);
     const [isUpdateWindowVisible, setIsUpdateWindowVisible] = useState(false);
 
@@ -13,35 +14,26 @@ const CarPoolTable = () => {
         fetchCarData();
     }, []);
 
-    const handleCreateClick = (newCar: Car) => {
-        setCarData((previousCarData) => [...previousCarData, newCar])
-        setIsCreateWindowVisible(true);
-    }
-
-    const handleUpdateClick = (car: Car) => {
-        setSelectedCar(car);
-        setIsUpdateWindowVisible(true);
-    }
-
     const fetchCarData = async () => {
-        try {
-            const response = await fetch("http://localhost:8080/api/cars");
-            const data = await response.json();
-            setCarData(data);
-        } catch (error) {
-            console.error("Error fetching car data:", error);
-        }
+        const cars = await CarPoolService.getCars();
+        setCarData(cars);
     };
 
-    const deleteCar = async (id: string) => {
-        try {
-            await fetch(`http://localhost:8080/api/cars/${id}`, {
-                method: "DELETE",
-            });
-            fetchCarData();
-        } catch(error) {
-            console.error("Error fetching car data:", error);
-        }
+    const handleCreateCar = async (newCar: Car) => {
+        setSelectedCar(newCar);
+        setIsCreateWindowVisible(true);
+        fetchCarData();
+    };
+
+    const handleUpdateCar = (updatedCar: Car) => {
+        setSelectedCar(updatedCar);
+        setIsUpdateWindowVisible(true);
+        fetchCarData();
+    };
+
+    const handleDeleteCar = async (id: string) => {
+        await CarPoolService.deleteCar(id);
+        await fetchCarData();
     };
 
     return (
@@ -105,7 +97,7 @@ const CarPoolTable = () => {
                             </td>
                             <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                                 <div className="flex items-center space-x-3.5">
-                                    <button className="hover:text-primary" onClick={() => handleUpdateClick(car)}>
+                                    <button className="hover:text-primary" onClick={() => handleUpdateCar(car)}>
                                         <svg
                                             className="fill-current"
                                             width="20"
@@ -125,7 +117,7 @@ const CarPoolTable = () => {
                                             </g>
                                         </svg>
                                     </button>
-                                    <button className="hover:text-primary" onClick={() => deleteCar(car.id)}>
+                                    <button className="hover:text-primary" onClick={() => handleDeleteCar(car.id)}>
                                         <svg
                                             className="fill-current"
                                             width="18"
@@ -171,23 +163,17 @@ const CarPoolTable = () => {
                     </tbody>
                 </table>
             </div>
+            {isCreateWindowVisible && (
+                <CreateCarWindow
+                    onCarCreated={handleCreateCar}
+                    onClose={() => {setIsCreateWindowVisible(false)}}
+                />
+            )}
             {isUpdateWindowVisible && selectedCar && (
                 <UpdateCarWindow
                     car={selectedCar}
-                    onClose={() => {
-                        fetchCarData();
-                        setIsUpdateWindowVisible(false);
-                    }}
-                    onCarUpdated={handleUpdateClick}
-                />
-            )}
-            {isCreateWindowVisible && (
-                <CreateCarWindow
-                    onClose={() => {
-                        fetchCarData();
-                        setIsCreateWindowVisible(false);
-                    }}
-                    onCarCreated={handleCreateClick}
+                    onCarUpdated={handleUpdateCar}
+                    onClose={() => {setIsUpdateWindowVisible(false)}}
                 />
             )}
         </div>

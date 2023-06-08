@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { Car } from "../../models/Car.ts";
+import { Car } from "../../models/Car";
+
+import CarPoolService from "../../services/CarPoolService.ts";
 
 type UpdateCarWindowProperties = {
     car: Car;
@@ -19,20 +21,9 @@ const UpdateCarWindow: React.FC<UpdateCarWindowProperties> = ({car, onClose, onC
     };
 
     const handleSaveClick = async () => {
-        try {
-            await fetch(`http://localhost:8080/api/cars/${car.id}`, {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(updatedCar),
-            });
-
-            onCarUpdated(updatedCar);
-            onClose();
-        } catch (error) {
-            console.error("Error updating car", error);
-        }
+        const updatedCarData: Car = await CarPoolService.updateCar(updatedCar);
+        onCarUpdated(updatedCarData);
+        onClose();
     };
 
     const handleCancelClick = () => {

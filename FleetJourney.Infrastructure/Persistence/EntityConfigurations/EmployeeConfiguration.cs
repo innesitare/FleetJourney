@@ -32,6 +32,8 @@ public sealed class EmployeeConfiguration : IEntityTypeConfiguration<Employee>
         builder.HasIndex(e => e.Id)
             .IsUnique()
             .IsDescending(false);
+        
+        builder.HasAlternateKey(e => e.Email);
 
         builder.HasMany(e => e.Trips)
             .WithOne()
