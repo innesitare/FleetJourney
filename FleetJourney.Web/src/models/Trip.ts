@@ -1,4 +1,5 @@
 export type Trip = {
+    id: string;
     carId: string;
     employeeId: string;
     startMileage: number;

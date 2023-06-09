@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { Employee } from "../../models/Employee";
 import EmployeeService from "../../services/EmployeeService";
 
-type UpdateEmployeeWindowProperties = {
+type UpdateEmployeeWindowProps = {
     employee: Employee;
     onClose: () => void;
     onEmployeeUpdated: (employee: Employee) => void;
 };
 
-const UpdateEmployeeWindow: React.FC<UpdateEmployeeWindowProperties> = ({employee, onClose, onEmployeeUpdated}) => {
+const UpdateEmployeeWindow: React.FC<UpdateEmployeeWindowProps> = ({employee, onClose, onEmployeeUpdated}) => {
     const [updatedEmployee, setUpdatedEmployee] = useState<Employee>(employee);
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {

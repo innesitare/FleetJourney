@@ -8,6 +8,11 @@ class EmployeeService {
         return await response.json();
     }
 
+    async getEmployeeById(employeeId: string): Promise<Employee> {
+        const response = await fetch(`${API_BASE_URL}/employees/${employeeId}`);
+        return await response.json();
+    }
+
     async createEmployee(employee: Employee): Promise<Employee> {
         const response = await fetch(`${API_BASE_URL}/employees`, {
             method: "POST",

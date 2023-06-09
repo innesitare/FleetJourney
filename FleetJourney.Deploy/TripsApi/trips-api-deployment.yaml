@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: trips-api
-          image: plaam/fleetjourney-trips-api:1.0.8
+          image: plaam/fleetjourney-trips-api:1.0.9
           imagePullPolicy: Always
           ports:
             - containerPort: 80

@@ -7,6 +7,7 @@ import CarPoolService from "../../services/CarPoolService";
 const CarPoolTable = () => {
     const [selectedCar, setSelectedCar] = useState<Car | null>(null);
     const [carData, setCarData] = useState<Car[]>([]);
+
     const [isCreateWindowVisible, setIsCreateWindowVisible] = useState(false);
     const [isUpdateWindowVisible, setIsUpdateWindowVisible] = useState(false);
 
@@ -22,13 +23,15 @@ const CarPoolTable = () => {
     const handleCreateCar = async (newCar: Car) => {
         setSelectedCar(newCar);
         setIsCreateWindowVisible(true);
-        fetchCarData();
+
+        await fetchCarData();
     };
 
-    const handleUpdateCar = (updatedCar: Car) => {
+    const handleUpdateCar = async (updatedCar: Car) => {
         setSelectedCar(updatedCar);
         setIsUpdateWindowVisible(true);
-        fetchCarData();
+
+        await fetchCarData();
     };
 
     const handleDeleteCar = async (id: string) => {
@@ -166,14 +169,14 @@ const CarPoolTable = () => {
             {isCreateWindowVisible && (
                 <CreateCarWindow
                     onCarCreated={handleCreateCar}
-                    onClose={() => {setIsCreateWindowVisible(false)}}
+                    onClose={() => setIsCreateWindowVisible(false)}
                 />
             )}
             {isUpdateWindowVisible && selectedCar && (
                 <UpdateCarWindow
                     car={selectedCar}
                     onCarUpdated={handleUpdateCar}
-                    onClose={() => {setIsUpdateWindowVisible(false)}}
+                    onClose={() => setIsUpdateWindowVisible(false)}
                 />
             )}
         </div>

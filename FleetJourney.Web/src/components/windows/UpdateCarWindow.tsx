@@ -3,13 +3,13 @@ import { Car } from "../../models/Car";
 
 import CarPoolService from "../../services/CarPoolService.ts";
 
-type UpdateCarWindowProperties = {
+type UpdateCarWindowProps = {
     car: Car;
     onClose: () => void;
     onCarUpdated: (car: Car) => void;
 };
 
-const UpdateCarWindow: React.FC<UpdateCarWindowProperties> = ({car, onClose, onCarUpdated}) => {
+const UpdateCarWindow: React.FC<UpdateCarWindowProps> = ({car, onClose, onCarUpdated}) => {
     const [updatedCar, setUpdatedCar] = useState<Car>(car);
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {

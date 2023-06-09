@@ -7,6 +7,7 @@ import EmployeeService from "../../services/EmployeeService.ts";
 const EmployeesTable = () => {
     const [selectedEmployee, setSelectedEmployee] = useState<Employee>();
     const [employeeData, setEmployeeData] = useState<Employee[]>([]);
+
     const [showCreateEmployeeWindow, setShowCreateEmployeeWindow] = useState(false);
     const [showUpdateEmployeeWindow, setShowUpdateEmployeeWindow] = useState(false);
 
@@ -19,19 +20,23 @@ const EmployeesTable = () => {
         setEmployeeData(employees);
     };
 
-    const handleCreateEmployee = (newEmployee: Employee) => {
+    const handleCreateEmployee = async (newEmployee: Employee) => {
         setSelectedEmployee(newEmployee);
         setShowCreateEmployeeWindow(true);
+
+        await fetchEmployeeData();
     };
 
-    const handleUpdateEmployee = (updatedEmployee: Employee) => {
+    const handleUpdateEmployee = async (updatedEmployee: Employee) => {
         setSelectedEmployee(updatedEmployee);
         setShowUpdateEmployeeWindow(true);
+
+        await fetchEmployeeData();
     };
 
     const handleDeleteEmployee = async (employeeId: string) => {
         await EmployeeService.deleteEmployee(employeeId);
-        fetchEmployeeData();
+        await fetchEmployeeData();
     };
 
     return (

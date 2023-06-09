@@ -3,12 +3,12 @@ import { Car } from "../../models/Car.ts";
 
 import CarPoolService from "../../services/CarPoolService.ts";
 
-type CreateCarWindowProperties = {
+type CreateCarWindowProps  = {
     onClose: () => void;
     onCarCreated: (car: Car) => void;
 };
 
-const CreateCarWindow: React.FC<CreateCarWindowProperties> = ({onClose, onCarCreated}) => {
+const CreateCarWindow: React.FC<CreateCarWindowProps> = ({onClose, onCarCreated}) => {
     const [newCar, setNewCar] = useState<Car>({
         id: "",
         licensePlateNumber: "",

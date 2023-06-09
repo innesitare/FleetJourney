@@ -3,12 +3,12 @@ import { Employee } from "../../models/Employee";
 
 import EmployeeService from "../../services/EmployeeService";
 
-type CreateEmployeeWindowProperties = {
+type CreateEmployeeWindowProps = {
     onClose: () => void;
     onEmployeeCreated: (employee: Employee) => void;
 };
 
-const CreateEmployeeWindow: React.FC<CreateEmployeeWindowProperties> = ({onClose, onEmployeeCreated}) => {
+const CreateEmployeeWindow: React.FC<CreateEmployeeWindowProps> = ({onClose, onEmployeeCreated}) => {
     const [newEmployee, setNewEmployee] = useState<Employee>({
         id: "",
         email: "",
