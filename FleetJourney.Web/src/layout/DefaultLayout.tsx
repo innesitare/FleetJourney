@@ -1,6 +1,6 @@
 import { ReactNode, useState } from 'react';
-import Header from '../components/bars/Header.tsx';
-import Sidebar from '../components/bars/Sidebar.tsx';
+import Header from '../components/Header.tsx';
+import Sidebar from '../components/Sidebar.tsx';
 
 interface DefaultLayoutProps {
     children: ReactNode;

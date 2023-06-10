@@ -4,16 +4,17 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port 4040",
     "build": "vite build",
     "preview": "vite preview"
   },
   "author": {
     "name": "Daniel",
     "email": "plam@dev.com",
-    "url": "https://fleetjourney.com"
+    "url": "https://fleet-journey.com"
   },
   "dependencies": {
+    "@auth0/auth0-react": "^2.1.0",
     "apexcharts": "^3.40.0",
     "jsvectormap": "^1.5.3",
     "localforage": "^1.10.0",

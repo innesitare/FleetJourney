@@ -55,7 +55,7 @@ const EmployeesTable = () => {
                             Last name
                         </th>
                         <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
-                            Birthdate
+                            Birthdate (yy/mm/dd)
                         </th>
                         <th className="py-4 px-4 font-medium text-black dark:text-white">
                             Actions

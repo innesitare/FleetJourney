@@ -6,7 +6,6 @@ import { Trip } from "../../models/Trip.ts";
 import EmployeeService from "../../services/EmployeeService.ts";
 import CarPoolService from "../../services/CarPoolService.ts";
 import TripService from "../../services/TripService.ts";
-import Checkbox from "../controls/Checkbox.tsx";
 
 type CreateTripWindowProps = {
     onClose: () => void;
@@ -137,25 +136,28 @@ const CreateTripWindow: React.FC<CreateTripWindowProps> = ({ onClose, onCreate }
                         onChange={handleInputChange}
                     />
                 </div>
-                <div>
-                    <label className="mb-3 block text-black dark:text-white">
-                        Is Private Trip?
-                    </label>
-                    <Checkbox
+                <div className="flex items-center mb-3">
+                    <input
+                        type="checkbox"
+                        id="privateTripCheckbox"
                         checked={newTrip.isPrivateTrip}
                         onChange={handleCheckboxChange}
                         name="isPrivateTrip"
+                        className="mr-3 mt-1"
                     />
+                    <label htmlFor="privateTripCheckbox" className="text-black dark:text-white">
+                        Is it a private trip?
+                    </label>
                 </div>
                 <div className="flex justify-end">
                     <button
-                        className="px-4 py-2 text-sm font-semibold text-white bg-blue-500 rounded mr-2"
+                        className="bg-blue-500 hover:bg-blue-600 text-black-2 font-semibold py-2 px-4 rounded"
                         onClick={handleSaveClick}
                     >
                         Save
                     </button>
                     <button
-                        className="px-4 py-2 text-sm font-semibold text-gray-600 bg-gray-200 rounded"
+                        className="mr-2 bg-gray-200 hover:bg-gray-300 text-black-2 font-semibold py-2 px-4 rounded"
                         onClick={handleCancelClick}
                     >
                         Cancel

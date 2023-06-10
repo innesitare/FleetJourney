@@ -1,18 +1,14 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import SignIn from './pages/Authentication/SignIn';
-import SignUp from './pages/Authentication/SignUp';
-import Dashboard from './pages/Dashboard/Dashboard.tsx';
-import Settings from './pages/Settings';
+import Dashboard from './pages/Dashboard.tsx';
 import Trips from './pages/Trips.tsx';
-import Alerts from './pages/UiElements/Alerts';
 import Employees from "./pages/Employees.tsx";
 import CarPool from "./pages/CarPool.tsx";
+import Callback from "./pages/Callback.tsx";
 
-function App() {
+const App: React.FC = () => {
     const [loading, setLoading] = useState<boolean>(true);
-
     const preloader = document.getElementById('preloader');
 
     if (preloader) {
@@ -35,10 +31,7 @@ function App() {
                 <Route path="/employees" element={<Employees />} />
                 <Route path="/cars" element={<CarPool />} />
                 <Route path="/trips" element={<Trips />} />
-                <Route path="/settings" element={<Settings />} />
-                <Route path="/ui/alerts" element={<Alerts />} />
-                <Route path="/auth/signin" element={<SignIn />} />
-                <Route path="/auth/signup" element={<SignUp />} />
+                <Route path="/callback" element={<Callback />} />
             </Routes>
         </>
     );

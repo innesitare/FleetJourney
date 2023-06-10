@@ -75,14 +75,16 @@ const UpdateEmployeeWindow: React.FC<UpdateEmployeeWindowProps> = ({employee, on
                     <label htmlFor="birthdate" className="text-black-2 font-semibold">
                         Birthdate:
                     </label>
-                    <input
-                        className="w-full p-2 border border-gray-300 rounded"
-                        type="text"
-                        name="birthdate"
-                        placeholder="Birthdate"
-                        value={updatedEmployee.birthdate}
-                        onChange={handleInputChange}
-                    />
+                    <div className="relative">
+                        <input
+                            type="date"
+                            className="w-full p-2 border border-gray-300 rounded"
+                            name="birthdate"
+                            placeholder="Birthdate"
+                            value={updatedEmployee.birthdate}
+                            onChange={handleInputChange}
+                        />
+                    </div>
                 </div>
                 <div className="flex justify-end">
                     <button

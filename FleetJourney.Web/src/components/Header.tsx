@@ -1,4 +1,4 @@
-import DropdownUser from '../controls/DropdownUser.tsx';
+import DropdownUser from './controls/DropdownUser.tsx';
 
 const Header = (props: {
     sidebarOpen: string | boolean | undefined;

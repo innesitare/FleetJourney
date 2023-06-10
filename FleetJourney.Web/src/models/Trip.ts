@@ -1,4 +1,4 @@
-export type Trip = {
+export interface Trip {
     id: string;
     carId: string;
     employeeId: string;

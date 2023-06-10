@@ -130,16 +130,19 @@ const UpdateTripWindow: React.FC<UpdateTripWindowProps> = ({trip, onClose, onUpd
                     />
                 </div>
                 <div>
-                    <label className="mb-3 block text-black dark:text-white">
-                        Private Trip:
-                    </label>
+                <div className="flex items-center mb-3">
                     <input
                         type="checkbox"
-                        className="mr-1"
-                        name="isPrivateTrip"
+                        id="privateTripCheckbox"
                         checked={updatedTrip.isPrivateTrip}
                         onChange={handleCheckboxChange}
+                        name="isPrivateTrip"
+                        className="mr-3 mt-1"
                     />
+                    <label htmlFor="privateTripCheckbox" className="text-black dark:text-white">
+                        Is it a private trip?
+                    </label>
+                </div>
                 </div>
                 <div className="flex justify-end">
                     <button

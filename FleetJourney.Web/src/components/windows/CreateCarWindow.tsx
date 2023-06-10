@@ -48,7 +48,7 @@ const CreateCarWindow: React.FC<CreateCarWindowProps> = ({onClose, onCarCreated}
                         className="w-full p-2 border border-gray-300 rounded"
                         type="text"
                         name="licensePlateNumber"
-                        placeholder="License Plate Number"
+                        placeholder="License Plate Number (e.g., 123-AB-12)"
                         value={newCar.licensePlateNumber}
                         onChange={handleInputChange}
                     />
@@ -85,7 +85,7 @@ const CreateCarWindow: React.FC<CreateCarWindowProps> = ({onClose, onCarCreated}
                     </label>
                     <input
                         className="w-full p-2 border border-gray-300 rounded"
-                        type="text"
+                        type="number"
                         name="currentMileage"
                         placeholder="Current Mileage"
                         value={newCar.currentMileage}
@@ -98,7 +98,7 @@ const CreateCarWindow: React.FC<CreateCarWindowProps> = ({onClose, onCarCreated}
                     </label>
                     <input
                         className="w-full p-2 border border-gray-300 rounded"
-                        type="text"
+                        type="number"
                         name="endOfLifeMileage"
                         placeholder="End of Life Mileage"
                         value={newCar.endOfLifeMileage}
@@ -111,7 +111,7 @@ const CreateCarWindow: React.FC<CreateCarWindowProps> = ({onClose, onCarCreated}
                     </label>
                     <input
                         className="w-full p-2 border border-gray-300 rounded"
-                        type="text"
+                        type="number"
                         name="maintenanceInterval"
                         placeholder="Maintenance Interval"
                         value={newCar.maintenanceInterval}

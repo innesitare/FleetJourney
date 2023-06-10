@@ -1,4 +1,4 @@
-export type Car = {
+export interface Car {
     id: string;
     licensePlateNumber: string;
     brand: string;

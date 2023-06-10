@@ -65,7 +65,7 @@ const UpdateCarWindow: React.FC<UpdateCarWindowProps> = ({car, onClose, onCarUpd
                     </label>
                     <input
                         className="w-full p-2 border border-gray-300 rounded"
-                        type="text"
+                        type="number"
                         name="currentMileage"
                         placeholder="Current Mileage"
                         value={updatedCar.currentMileage}
@@ -78,7 +78,7 @@ const UpdateCarWindow: React.FC<UpdateCarWindowProps> = ({car, onClose, onCarUpd
                     </label>
                     <input
                         className="w-full p-2 border border-gray-300 rounded"
-                        type="text"
+                        type="number"
                         name="endOfLifeMileage"
                         placeholder="End of Life Mileage"
                         value={updatedCar.endOfLifeMileage}
@@ -91,7 +91,7 @@ const UpdateCarWindow: React.FC<UpdateCarWindowProps> = ({car, onClose, onCarUpd
                     </label>
                     <input
                         className="w-full p-2 border border-gray-300 rounded"
-                        type="text"
+                        type="number"
                         name="maintenanceInterval"
                         placeholder="Maintenance Interval"
                         value={updatedCar.maintenanceInterval}
