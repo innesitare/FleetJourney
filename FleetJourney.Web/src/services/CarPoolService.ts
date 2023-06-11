@@ -1,15 +1,19 @@
-import {Car} from "../models/Car";
-
-const API_BASE_URL = "http://localhost:8080/api/cars";
+import { Car } from "../models/Car";
+import { API_BASE_URL } from "../config";
 
 class CarPoolService {
-    async getCars(): Promise<Car[]> {
-        const response = await fetch(API_BASE_URL);
-        return await response.json();
+    getCars = async (): Promise<Car[]> => {
+        const response = await fetch(`${API_BASE_URL}/cars`);
+        return response.json();
     }
 
-    async createCar(newCar: Car): Promise<Car> {
-        const response = await fetch(API_BASE_URL, {
+    getCar = async(carId: string): Promise<Car> => {
+        const response = await fetch(`${API_BASE_URL}/cars/${carId}`);
+        return response.json();
+    }
+
+    createCar = async (newCar: Car): Promise<Car> => {
+        const response = await fetch(`${API_BASE_URL}/cars`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -17,11 +21,11 @@ class CarPoolService {
             body: JSON.stringify(newCar),
         });
 
-        return await response.json();
+        return response.json();
     }
 
-    async updateCar(car: Car): Promise<Car> {
-        const response = await fetch(`${API_BASE_URL}/${car.id}`, {
+    updateCar = async (car: Car): Promise<Car> => {
+        const response = await fetch(`${API_BASE_URL}/cars/${car.id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -29,11 +33,11 @@ class CarPoolService {
             body: JSON.stringify(car),
         });
 
-        return await response.json();
+        return response.json();
     }
 
-    async deleteCar(id: string): Promise<void> {
-        await fetch(`${API_BASE_URL}/${id}`, {
+    deleteCar = async (id: string): Promise<void> => {
+        await fetch(`${API_BASE_URL}/cars/${id}`, {
             method: "DELETE",
         });
     }

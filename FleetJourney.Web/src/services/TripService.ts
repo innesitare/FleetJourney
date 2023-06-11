@@ -1,14 +1,13 @@
 import { Trip } from "../models/Trip";
-
-const API_BASE_URL = "http://localhost:8080/api";
+import { API_BASE_URL } from "../config";
 
 class TripService {
-    async getTrips(): Promise<Trip[]> {
+    getTrips = async (): Promise<Trip[]> => {
         const response = await fetch(`${API_BASE_URL}/trips`);
-        return await response.json();
+        return response.json();
     }
 
-    async createTrip(trip: Trip): Promise<Trip> {
+    createTrip = async (trip: Trip): Promise<Trip> => {
         const response = await fetch(`${API_BASE_URL}/trips`, {
             method: "POST",
             headers: {
@@ -17,10 +16,10 @@ class TripService {
             body: JSON.stringify(trip),
         });
 
-        return await response.json();
+        return response.json();
     }
 
-    async updateTrip(trip: Trip): Promise<Trip> {
+    updateTrip = async (trip: Trip): Promise<Trip> => {
         const response = await fetch(`${API_BASE_URL}/trips/${trip.id}`, {
             method: "PUT",
             headers: {
@@ -29,10 +28,10 @@ class TripService {
             body: JSON.stringify(trip),
         });
 
-        return await response.json();
+        return response.json();
     }
 
-    async deleteTrip(tripId: string): Promise<void> {
+    deleteTrip = async (tripId: string): Promise<void> => {
         await fetch(`${API_BASE_URL}/trips/${tripId}`, {
             method: "DELETE",
         });

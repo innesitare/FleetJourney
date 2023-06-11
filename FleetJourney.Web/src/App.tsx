@@ -1,39 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import Dashboard from './pages/Dashboard.tsx';
-import Trips from './pages/Trips.tsx';
-import Employees from "./pages/Employees.tsx";
-import CarPool from "./pages/CarPool.tsx";
-import Callback from "./pages/Callback.tsx";
+import PageLoader from './components/PageLoader.tsx';
+import DashboardPage from './pages/DashboardPage.tsx';
+import TripsPage from './pages/TripsPage.tsx';
+import EmployeesPage from "./pages/EmployeesPage.tsx";
+import CarPoolPage from "./pages/CarPoolPage.tsx";
+import CallbackPage from "./pages/CallbackPage.tsx";
+import ProfilePage from './pages/ProfilePage.tsx';
 
 const App: React.FC = () => {
-    const [loading, setLoading] = useState<boolean>(true);
-    const preloader = document.getElementById('preloader');
-
-    if (preloader) {
-        setTimeout(() => {
-            preloader.style.display = 'none';
-            setLoading(false);
-        }, 2000);
-    }
-
-    useEffect(() => {
-        setTimeout(() => setLoading(false), 1000);
-    }, []);
-
-    return loading ? (
-        <p className=" text-center text-danger">Failed to lead app</p>
-    ) : (
-        <>
+    return (
+        <PageLoader>
             <Routes>
-                <Route path="/" element={<Dashboard />} />
-                <Route path="/employees" element={<Employees />} />
-                <Route path="/cars" element={<CarPool />} />
-                <Route path="/trips" element={<Trips />} />
-                <Route path="/callback" element={<Callback />} />
+                <Route path="/" element={<DashboardPage />} />
+                <Route path="/employees" element={<EmployeesPage />} />
+                <Route path="/cars" element={<CarPoolPage />} />
+                <Route path="/trips" element={<TripsPage />} />
+                <Route path="/profile" element={<ProfilePage />} />
+                <Route path="/callback" element={<CallbackPage />} />
             </Routes>
-        </>
+        </PageLoader>
     );
 }
 

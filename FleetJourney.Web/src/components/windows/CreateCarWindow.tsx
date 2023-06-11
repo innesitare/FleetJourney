@@ -28,9 +28,13 @@ const CreateCarWindow: React.FC<CreateCarWindowProps> = ({onClose, onCarCreated}
     };
 
     const handleSaveClick = async () => {
-        const createdCar: Car = await CarPoolService.createCar(newCar);
-        onCarCreated(createdCar);
-        onClose();
+        try {
+            const createdCar: Car = await CarPoolService.createCar(newCar);
+            onCarCreated(createdCar);
+            onClose();
+        } catch(error) {
+            console.error("ZX", error);
+        }
     };
 
     const handleCancelClick = () => {

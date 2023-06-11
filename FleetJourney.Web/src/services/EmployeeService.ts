@@ -1,19 +1,18 @@
-import {Employee} from "../models/Employee";
-
-const API_BASE_URL = "http://localhost:8080/api";
+import { Employee } from "../models/Employee";
+import { API_BASE_URL } from '../config';
 
 class EmployeeService {
-    async getEmployees(): Promise<Employee[]> {
+    getEmployees = async (): Promise<Employee[]> => {
         const response = await fetch(`${API_BASE_URL}/employees`);
-        return await response.json();
+        return response.json();
     }
 
-    async getEmployeeById(employeeId: string): Promise<Employee> {
+    getEmployeeById = async (employeeId: string): Promise<Employee> => {
         const response = await fetch(`${API_BASE_URL}/employees/${employeeId}`);
-        return await response.json();
+        return response.json();
     }
 
-    async createEmployee(employee: Employee): Promise<Employee> {
+    createEmployee = async (employee: Employee): Promise<Employee> => {
         const response = await fetch(`${API_BASE_URL}/employees`, {
             method: "POST",
             headers: {
@@ -22,10 +21,10 @@ class EmployeeService {
             body: JSON.stringify(employee),
         });
 
-        return await response.json();
+        return response.json();
     }
 
-    async updateEmployee(employee: Employee): Promise<Employee> {
+    updateEmployee = async (employee: Employee): Promise<Employee> => {
         const response = await fetch(`${API_BASE_URL}/employees/${employee.id}`, {
             method: "PUT",
             headers: {
@@ -34,10 +33,10 @@ class EmployeeService {
             body: JSON.stringify(employee),
         });
 
-        return await response.json();
+        return response.json();
     }
 
-    async deleteEmployee(employeeId: string): Promise<void> {
+    deleteEmployee = async (employeeId: string): Promise<void> => {
         await fetch(`${API_BASE_URL}/employees/${employeeId}`, {
             method: "DELETE",
         });

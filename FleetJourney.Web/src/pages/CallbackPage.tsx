@@ -1,7 +1,7 @@
-import { useAuth0 } from "@auth0/auth0-react";
 import React from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 
-const Callback: React.FC = () => {
+const CallbackPage: React.FC = () => {
     const { error } = useAuth0();
 
     if (error) {
@@ -20,4 +20,4 @@ const Callback: React.FC = () => {
     }
 };
 
-export default Callback;
+export default CallbackPage;

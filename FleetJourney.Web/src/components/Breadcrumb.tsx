@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import {Component} from "react";
+import { Component } from "react";
 
 interface BreadcrumbProps {
   pageName: string;

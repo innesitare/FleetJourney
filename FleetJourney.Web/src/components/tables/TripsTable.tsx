@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 import { Trip } from "../../models/Trip.ts";
 import CreateTripWindow from "../windows/CreateTripWindow.tsx";
 import UpdateTripWindow from "../windows/UpdateTripWindow.tsx";
@@ -15,6 +16,8 @@ const TripsTable = () => {
 
     const [showCreateTripWindow, setShowCreateTripWindow] = useState(false);
     const [showUpdateTripWindow, setShowUpdateTripWindow] = useState(false);
+
+    const authentication = useAuth0();
 
     useEffect(() => {
         fetchTripsData();
@@ -105,9 +108,9 @@ const TripsTable = () => {
                         <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
                             Privacy
                         </th>
-                        <th className="py-4 px-4 font-medium text-black dark:text-white">
+                        {authentication.isAuthenticated && (<th className="py-4 px-4 font-medium text-black dark:text-white">
                             Actions
-                        </th>
+                        </th>)}
                     </tr>
                     </thead>
                     <tbody>
@@ -136,7 +139,7 @@ const TripsTable = () => {
                                     {trip.isPrivateTrip.toString()}
                                 </p>
                             </td>
-                            <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                            {authentication.isAuthenticated && (<td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                                 <div className="flex items-center space-x-3.5">
                                     <button className="hover:text-primary" onClick={() => handleUpdateTrip(trip)}>
                                         <svg
@@ -186,10 +189,10 @@ const TripsTable = () => {
                                         </svg>
                                     </button>
                                 </div>
-                            </td>
+                            </td>)}
                         </tr>
                     ))}
-                    <tr>
+                    {authentication.isAuthenticated && (<tr>
                         <td colSpan={7} className="py-5">
                             <div className="flex justify-center">
                                 <button
@@ -200,7 +203,7 @@ const TripsTable = () => {
                                 </button>
                             </div>
                         </td>
-                    </tr>
+                    </tr>)}
                     </tbody>
                 </table>
             </div>

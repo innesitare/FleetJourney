@@ -2,7 +2,7 @@ import Breadcrumb from '../components/Breadcrumb';
 import CarPoolTable from '../components/tables/CarPoolTable.tsx';
 import DefaultLayout from '../layout/DefaultLayout';
 
-const CarPool = () => {
+const CarPoolPage = () => {
     return (
         <DefaultLayout>
             <Breadcrumb pageName="Cars" />
@@ -13,4 +13,4 @@ const CarPool = () => {
     );
 };
 
-export default CarPool;
+export default CarPoolPage;

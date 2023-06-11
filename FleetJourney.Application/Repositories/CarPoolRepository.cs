@@ -33,16 +33,22 @@ internal sealed class CarPoolRepository : ICarPoolRepository
         {
             return null;
         }
-        
+
         await _applicationDbContext.Cars.LoadDataAsync(car!, c => c.Trips!);
         return car;
     }
 
     public async Task<bool> CreateAsync(Car car, CancellationToken cancellationToken)
     {
+        bool exists = await _applicationDbContext.Cars.AnyAsync(t => t.LicensePlateNumber == car.LicensePlateNumber, cancellationToken);
+        if (exists)
+        {
+            return false;
+        }
+        
         await _applicationDbContext.Cars.AddAsync(car, cancellationToken);
         int result = await _applicationDbContext.SaveChangesAsync(cancellationToken);
-
+        
         return result > 0;
     }
 

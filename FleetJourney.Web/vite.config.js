@@ -1,9 +1,17 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import dotenv from 'dotenv';
 
-export default defineConfig ({
-    plugins: [react()],
-    preview: {
-        port: 4040
-    },
-})
+dotenv.config();
+
+export default defineConfig(() => {
+    return {
+        plugins: [react()],
+        preview: {
+            port: 4040,
+        },
+        define: {
+            'process.env': process.env,
+        },
+    };
+});

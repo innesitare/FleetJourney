@@ -6,4 +6,4 @@ export interface Car {
     currentMileage: number;
     endOfLifeMileage: number;
     maintenanceInterval: number;
-};
+}

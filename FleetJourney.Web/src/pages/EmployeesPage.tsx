@@ -1,16 +1,16 @@
 import Breadcrumb from '../components/Breadcrumb';
-import TripsTable from '../components/tables/TripsTable.tsx';
+import EmployeesTable from '../components/tables/EmployeesTable.tsx';
 import DefaultLayout from '../layout/DefaultLayout';
 
-const Trips = () => {
+const EmployeesPage = () => {
     return (
         <DefaultLayout>
-            <Breadcrumb pageName="Trips" />
+            <Breadcrumb pageName="Employees" />
             <div className="flex flex-col gap-10">
-                <TripsTable />
+                <EmployeesTable />
             </div>
         </DefaultLayout>
     );
 };
 
-export default Trips;
+export default EmployeesPage;

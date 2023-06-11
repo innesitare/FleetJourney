@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 import { Employee } from "../../models/Employee.ts";
 import CreateEmployeeWindow from "../windows/CreateEmployeeWindow.tsx";
 import UpdateEmployeeWindow from "../windows/UpdateEmployeeWindow.tsx";
@@ -10,6 +11,8 @@ const EmployeesTable = () => {
 
     const [showCreateEmployeeWindow, setShowCreateEmployeeWindow] = useState(false);
     const [showUpdateEmployeeWindow, setShowUpdateEmployeeWindow] = useState(false);
+
+    const authentication = useAuth0();
 
     useEffect(() => {
         fetchEmployeeData();
@@ -57,9 +60,9 @@ const EmployeesTable = () => {
                         <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
                             Birthdate (yy/mm/dd)
                         </th>
-                        <th className="py-4 px-4 font-medium text-black dark:text-white">
+                        {authentication.isAuthenticated && (<th className="py-4 px-4 font-medium text-black dark:text-white">
                             Actions
-                        </th>
+                        </th>)}
                     </tr>
                     </thead>
                     <tbody>
@@ -80,9 +83,10 @@ const EmployeesTable = () => {
                             <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                                 <p className="text-black dark:text-white">{employee.birthdate}</p>
                             </td>
-                            <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                            {authentication.isAuthenticated && (<td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                                 <div className="flex items-center space-x-3.5">
-                                    <button className="hover:text-primary" onClick={() => handleUpdateEmployee(employee)}>
+                                    <button className="hover:text-primary"
+                                            onClick={() => handleUpdateEmployee(employee)}>
                                         <svg
                                             className="fill-current"
                                             width="20"
@@ -102,7 +106,8 @@ const EmployeesTable = () => {
                                             </g>
                                         </svg>
                                     </button>
-                                    <button className="hover:text-primary" onClick={() => handleDeleteEmployee(employee.id)}>
+                                    <button className="hover:text-primary"
+                                            onClick={() => handleDeleteEmployee(employee.id)}>
                                         <svg
                                             className="fill-current"
                                             width="18"
@@ -131,9 +136,10 @@ const EmployeesTable = () => {
                                     </button>
                                 </div>
                             </td>
+                            )}
                         </tr>
                     ))}
-                    <tr>
+                    {authentication.isAuthenticated && (<tr>
                         <td colSpan={7} className="py-5">
                             <div className="flex justify-center">
                                 <button
@@ -144,7 +150,7 @@ const EmployeesTable = () => {
                                 </button>
                             </div>
                         </td>
-                    </tr>
+                    </tr>)}
                     </tbody>
                 </table>
             </div>
