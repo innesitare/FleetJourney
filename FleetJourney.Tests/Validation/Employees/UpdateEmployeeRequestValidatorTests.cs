@@ -3,24 +3,24 @@ using FleetJourney.Application.Validation.Employees;
 using FluentValidation.TestHelper;
 using Xunit;
 
-namespace FleetJourney.Application.Tests.Validation.Employees;
+namespace FleetJourney.Tests.Validation.Employees;
 
-public sealed class CreateEmployeeRequestValidatorTests
+public sealed class UpdateEmployeeRequestValidatorTests
 {
-    private readonly CreateEmployeeRequestValidator _validator;
+    private readonly UpdateEmployeeRequestValidator _validator;
 
-    public CreateEmployeeRequestValidatorTests()
+    public UpdateEmployeeRequestValidatorTests()
     {
-        _validator = new CreateEmployeeRequestValidator();
+        _validator = new UpdateEmployeeRequestValidator();
     }
 
     [Theory]
     [InlineData(null)]
     [InlineData("")]
-    public async Task CreateEmployeeRequestValidator_ShouldHaveValidationErrorForInvalidName(string name)
+    public async Task UpdateEmployeeRequestValidator_ShouldHaveValidationErrorForInvalidName(string name)
     {
         // Arrange
-        var createEmployeeRequest = new CreateEmployeeRequest
+        var updateEmployeeRequest = new UpdateEmployeeRequest
         {
             Name = name,
             LastName = "Doe",
@@ -29,7 +29,7 @@ public sealed class CreateEmployeeRequestValidatorTests
         };
 
         // Act
-        var result = await _validator.TestValidateAsync(createEmployeeRequest);
+        var result = await _validator.TestValidateAsync(updateEmployeeRequest);
 
         // Assert
         result.ShouldHaveValidationErrorFor(request => request.Name)
@@ -39,10 +39,10 @@ public sealed class CreateEmployeeRequestValidatorTests
     [Theory]
     [InlineData(null)]
     [InlineData("")]
-    public async Task CreateEmployeeRequestValidator_ShouldHaveValidationErrorForInvalidLastName(string lastName)
+    public async Task UpdateEmployeeRequestValidator_ShouldHaveValidationErrorForInvalidLastName(string lastName)
     {
         // Arrange
-        var createEmployeeRequest = new CreateEmployeeRequest
+        var updateEmployeeRequest = new UpdateEmployeeRequest
         {
             Name = "John",
             LastName = lastName,
@@ -51,7 +51,7 @@ public sealed class CreateEmployeeRequestValidatorTests
         };
 
         // Act
-        var result = await _validator.TestValidateAsync(createEmployeeRequest);
+        var result = await _validator.TestValidateAsync(updateEmployeeRequest);
 
         // Assert
         result.ShouldHaveValidationErrorFor(request => request.LastName)
@@ -62,11 +62,11 @@ public sealed class CreateEmployeeRequestValidatorTests
     [InlineData(null, "'Email' must not be empty.")]
     [InlineData("", "'Email' must not be empty.")]
     [InlineData("notAnEmail", "Invalid email address.")]
-    public async Task CreateEmployeeRequestValidator_ShouldHaveValidationErrorForInvalidEmail(string email,
+    public async Task UpdateEmployeeRequestValidator_ShouldHaveValidationErrorForInvalidEmail(string email,
         string expectedErrorMessage)
     {
         // Arrange
-        var createEmployeeRequest = new CreateEmployeeRequest
+        var updateEmployeeRequest = new UpdateEmployeeRequest
         {
             Name = "John",
             LastName = "Doe",
@@ -75,7 +75,7 @@ public sealed class CreateEmployeeRequestValidatorTests
         };
 
         // Act
-        var result = await _validator.TestValidateAsync(createEmployeeRequest);
+        var result = await _validator.TestValidateAsync(updateEmployeeRequest);
 
         // Assert
         result.ShouldHaveValidationErrorFor(request => request.Email)
@@ -83,10 +83,10 @@ public sealed class CreateEmployeeRequestValidatorTests
     }
 
     [Fact]
-    public async Task CreateEmployeeRequestValidator_ShouldHaveValidationErrorForMissingBirthdate()
+    public async Task UpdateEmployeeRequestValidator_ShouldHaveValidationErrorForMissingBirthdate()
     {
         // Arrange
-        var createEmployeeRequest = new CreateEmployeeRequest
+        var updateEmployeeRequest = new UpdateEmployeeRequest
         {
             Name = "John",
             LastName = "Doe",
@@ -95,7 +95,7 @@ public sealed class CreateEmployeeRequestValidatorTests
         };
 
         // Act
-        var result = await _validator.TestValidateAsync(createEmployeeRequest);
+        var result = await _validator.TestValidateAsync(updateEmployeeRequest);
 
         // Assert
         result.ShouldHaveValidationErrorFor(request => request.Birthdate)
@@ -103,10 +103,10 @@ public sealed class CreateEmployeeRequestValidatorTests
     }
 
     [Fact]
-    public async Task CreateEmployeeRequestValidator_ShouldNotHaveValidationErrorForValidEmployee()
+    public async Task UpdateEmployeeRequestValidator_ShouldNotHaveValidationErrorForValidEmployee()
     {
         // Arrange
-        var createEmployeeRequest = new CreateEmployeeRequest
+        var updateEmployeeRequest = new UpdateEmployeeRequest
         {
             Name = "John",
             LastName = "Doe",
@@ -115,7 +115,7 @@ public sealed class CreateEmployeeRequestValidatorTests
         };
 
         // Act
-        var result = await _validator.TestValidateAsync(createEmployeeRequest);
+        var result = await _validator.TestValidateAsync(updateEmployeeRequest);
 
         // Assert
         result.ShouldNotHaveAnyValidationErrors();

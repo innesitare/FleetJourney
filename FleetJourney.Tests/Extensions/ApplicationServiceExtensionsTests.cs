@@ -4,7 +4,7 @@ using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
-namespace FleetJourney.Application.Tests.Extensions;
+namespace FleetJourney.Tests.Extensions;
 
 public sealed class ApplicationServiceExtensionsTests
 {

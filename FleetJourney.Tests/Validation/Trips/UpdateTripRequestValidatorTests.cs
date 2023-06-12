@@ -3,7 +3,7 @@ using FleetJourney.Application.Validation.Trips;
 using FluentValidation.TestHelper;
 using Xunit;
 
-namespace FleetJourney.Application.Tests.Validation.Trips;
+namespace FleetJourney.Tests.Validation.Trips;
 
 public class UpdateTripRequestValidatorTests
 {

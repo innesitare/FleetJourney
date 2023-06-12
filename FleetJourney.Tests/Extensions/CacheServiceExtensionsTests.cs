@@ -1,12 +1,9 @@
 using FleetJourney.Application.Extensions;
 using FleetJourney.Application.Services.Abstractions;
 using Moq;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
 using Xunit;
 
-namespace FleetJourney.Application.Tests.Extensions;
+namespace FleetJourney.Tests.Extensions;
 
 public sealed class CacheServiceExtensionsTests
 {

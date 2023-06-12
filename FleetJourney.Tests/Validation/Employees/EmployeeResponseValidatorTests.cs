@@ -3,7 +3,7 @@ using FleetJourney.Application.Validation.Employees;
 using FluentValidation.TestHelper;
 using Xunit;
 
-namespace FleetJourney.Application.Tests.Validation.Employees;
+namespace FleetJourney.Tests.Validation.Employees;
 
 public sealed class EmployeeResponseValidatorTests
 {

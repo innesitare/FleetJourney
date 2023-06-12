@@ -1,14 +1,14 @@
 ﻿using FleetJourney.Application.Extensions;
-using FleetJourney.Application.Tests.Models;
 using FleetJourney.Infrastructure.Persistence;
 using FleetJourney.Infrastructure.Persistence.Abstractions;
+using FleetJourney.Tests.Models;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Testcontainers.MySql;
 using Xunit;
 
-namespace FleetJourney.Application.Tests.Extensions;
+namespace FleetJourney.Tests.Extensions;
 
 public sealed class DatabaseExtensionsTests : IClassFixture<MySqlContainerFixture>
 {

@@ -5,7 +5,7 @@ using FleetJourney.Domain.Trips;
 using FluentAssertions;
 using Xunit;
 
-namespace FleetJourney.Application.Tests.Mapping;
+namespace FleetJourney.Tests.Mapping;
 
 public sealed class TripMapperTests
 {

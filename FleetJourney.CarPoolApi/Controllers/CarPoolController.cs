@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FleetJourney.CarPoolApi.Controllers;
 
-// [Authorize]
 [ApiController]
 public sealed class CarPoolController : ControllerBase
 {

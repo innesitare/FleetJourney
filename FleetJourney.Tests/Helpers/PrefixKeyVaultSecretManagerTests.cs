@@ -3,7 +3,7 @@ using FleetJourney.Application.Helpers;
 using FluentAssertions;
 using Xunit;
 
-namespace FleetJourney.Application.Tests.Helpers;
+namespace FleetJourney.Tests.Helpers;
 
 public sealed class PrefixKeyVaultSecretManagerTests
 {

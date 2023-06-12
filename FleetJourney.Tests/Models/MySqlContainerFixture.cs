@@ -2,7 +2,7 @@ using DotNet.Testcontainers.Builders;
 using Testcontainers.MySql;
 using Xunit;
 
-namespace FleetJourney.Application.Tests.Models;
+namespace FleetJourney.Tests.Models;
 
 public sealed class MySqlContainerFixture : IAsyncLifetime
 {

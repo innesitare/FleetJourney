@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace FleetJourney.Application.Tests.Models;
+namespace FleetJourney.Tests.Models;
 
 public sealed class DatabaseFixture<TEntity> : IDisposable 
     where TEntity : DbContext

@@ -3,15 +3,15 @@ using FleetJourney.Application.Validation.CarPool;
 using FluentValidation.TestHelper;
 using Xunit;
 
-namespace FleetJourney.Application.Tests.Validation.CarPool;
+namespace FleetJourney.Tests.Validation.CarPool;
 
-public sealed class UpdateCarRequestValidatorTests
+public sealed class CreateCarRequestValidatorTests
 {
-    private readonly UpdateCarRequestValidator _validator;
+    private readonly CreateCarRequestValidator _validator;
 
-    public UpdateCarRequestValidatorTests()
+    public CreateCarRequestValidatorTests()
     {
-        _validator = new UpdateCarRequestValidator();
+        _validator = new CreateCarRequestValidator();
     }
 
     [Theory]
@@ -20,7 +20,7 @@ public sealed class UpdateCarRequestValidatorTests
     public async Task SetLicensePlateNumber_WithInvalidLicensePlateNumber_ShouldReturnValidationError(string licensePlateNumber)
     {
         // Arrange
-        var updateCarRequest = new UpdateCarRequest
+        var createCarRequest = new CreateCarRequest
         {
             LicensePlateNumber = licensePlateNumber,
             Brand = "Valid Brand",
@@ -31,7 +31,7 @@ public sealed class UpdateCarRequestValidatorTests
         };
 
         // Act
-        var result = await _validator.TestValidateAsync(updateCarRequest);
+        var result = await _validator.TestValidateAsync(createCarRequest);
 
         // Assert
         result.ShouldHaveValidationErrorFor(request => request.LicensePlateNumber)
@@ -42,7 +42,7 @@ public sealed class UpdateCarRequestValidatorTests
     public async Task SetLicensePlateNumber_WithInvalidFormat_ShouldReturnValidationError()
     {
         // Arrange
-        var updateCarRequest = new UpdateCarRequest
+        var createCarRequest = new CreateCarRequest
         {
             LicensePlateNumber = "InvalidFormat",
             Brand = "Valid Brand",
@@ -53,7 +53,7 @@ public sealed class UpdateCarRequestValidatorTests
         };
 
         // Act
-        var result = await _validator.TestValidateAsync(updateCarRequest);
+        var result = await _validator.TestValidateAsync(createCarRequest);
 
         // Assert
         result.ShouldHaveValidationErrorFor(request => request.LicensePlateNumber)
@@ -66,7 +66,7 @@ public sealed class UpdateCarRequestValidatorTests
     public async Task SetBrand_WithInvalidBrand_ShouldReturnValidationError(string brand)
     {
         // Arrange
-        var updateCarRequest = new UpdateCarRequest
+        var createCarRequest = new CreateCarRequest
         {
             LicensePlateNumber = "Valid License Plate Number",
             Brand = brand,
@@ -77,7 +77,7 @@ public sealed class UpdateCarRequestValidatorTests
         };
 
         // Act
-        var result = await _validator.TestValidateAsync(updateCarRequest);
+        var result = await _validator.TestValidateAsync(createCarRequest);
 
         // Assert
         result.ShouldHaveValidationErrorFor(request => request.Brand)
@@ -90,7 +90,7 @@ public sealed class UpdateCarRequestValidatorTests
     public async Task SetModel_WithInvalidModel_ShouldReturnValidationError(string model)
     {
         // Arrange
-        var updateCarRequest = new UpdateCarRequest
+        var createCarRequest = new CreateCarRequest
         {
             LicensePlateNumber = "Valid License Plate Number",
             Brand = "Valid Brand",
@@ -101,7 +101,7 @@ public sealed class UpdateCarRequestValidatorTests
         };
 
         // Act
-        var result = await _validator.TestValidateAsync(updateCarRequest);
+        var result = await _validator.TestValidateAsync(createCarRequest);
 
         // Assert
         result.ShouldHaveValidationErrorFor(request => request.Model)
@@ -113,7 +113,7 @@ public sealed class UpdateCarRequestValidatorTests
     public async Task SetEndOfLifeMileage_WithInvalidEndOfLifeMileage_ShouldReturnValidationError(uint endOfLifeMileage)
     {
         // Arrange
-        var updateCarRequest = new UpdateCarRequest
+        var createCarRequest = new CreateCarRequest
         {
             LicensePlateNumber = "Valid License Plate Number",
             Brand = "Valid Brand",
@@ -124,7 +124,7 @@ public sealed class UpdateCarRequestValidatorTests
         };
 
         // Act
-        var result = await _validator.TestValidateAsync(updateCarRequest);
+        var result = await _validator.TestValidateAsync(createCarRequest);
 
         // Assert
         result.ShouldHaveValidationErrorFor(request => request.EndOfLifeMileage)
@@ -136,7 +136,7 @@ public sealed class UpdateCarRequestValidatorTests
     public async Task SetMaintenanceInterval_WithInvalidMaintenanceInterval_ShouldReturnValidationError(uint maintenanceInterval)
     {
         // Arrange
-        var updateCarRequest = new UpdateCarRequest
+        var createCarRequest = new CreateCarRequest
         {
             LicensePlateNumber = "Valid License Plate Number",
             Brand = "Valid Brand",
@@ -147,7 +147,7 @@ public sealed class UpdateCarRequestValidatorTests
         };
 
         // Act
-        var result = await _validator.TestValidateAsync(updateCarRequest);
+        var result = await _validator.TestValidateAsync(createCarRequest);
 
         // Assert
         result.ShouldHaveValidationErrorFor(request => request.MaintenanceInterval)
@@ -159,7 +159,7 @@ public sealed class UpdateCarRequestValidatorTests
     public async Task SetCurrentMileage_WithInvalidCurrentMileage_ShouldReturnValidationError(uint currentMileage)
     {
         // Arrange
-        var updateCarRequest = new UpdateCarRequest
+        var createCarRequest = new CreateCarRequest
         {
             LicensePlateNumber = "Valid License Plate Number",
             Brand = "Valid Brand",
@@ -170,7 +170,7 @@ public sealed class UpdateCarRequestValidatorTests
         };
 
         // Act
-        var result = await _validator.TestValidateAsync(updateCarRequest);
+        var result = await _validator.TestValidateAsync(createCarRequest);
 
         // Assert
         result.ShouldHaveValidationErrorFor(request => request.CurrentMileage)

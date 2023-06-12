@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FleetJourney.EmployeesApi.Controllers;
 
-// [Authorize]
 [ApiController]
 public sealed class EmployeeController : ControllerBase
 {
