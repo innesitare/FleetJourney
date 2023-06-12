@@ -2,6 +2,7 @@ using FleetJourney.Application.Contracts.Requests.Employees;
 using FleetJourney.Application.Contracts.Responses.Employees;
 using FleetJourney.Application.Mapping;
 using FleetJourney.Domain.EmployeeInfo;
+using FluentAssertions;
 using Xunit;
 
 namespace FleetJourney.Application.Tests.Mapping;
@@ -24,7 +25,7 @@ public sealed class EmployeeMapperTests
         var result = employee.ToResponse();
 
         // Assert
-        Assert.IsType<EmployeeResponse>(result);
+        result.Should().BeOfType<EmployeeResponse>();
     }
 
     [Fact]
@@ -43,7 +44,7 @@ public sealed class EmployeeMapperTests
         var result = request.ToEmployee();
 
         // Assert
-        Assert.IsType<Employee>(result);
+        result.Should().BeOfType<Employee>();
     }
 
     [Fact]
@@ -62,7 +63,7 @@ public sealed class EmployeeMapperTests
         var result = request.ToEmployee();
 
         // Assert
-        Assert.IsType<Employee>(result);
+        result.Should().BeOfType<Employee>();
     }
 
     [Fact]
@@ -82,7 +83,7 @@ public sealed class EmployeeMapperTests
         var result = request.ToEmployee(id);
 
         // Assert
-        Assert.Equal(id, request.Id);
-        Assert.IsType<Employee>(result);
+        request.Id.Should().Be(id);
+        result.Should().BeOfType<Employee>();
     }
 }

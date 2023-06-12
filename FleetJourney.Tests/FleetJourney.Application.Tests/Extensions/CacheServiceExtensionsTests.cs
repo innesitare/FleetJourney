@@ -16,13 +16,13 @@ public sealed class CacheServiceExtensionsTests
         // Arrange
         var cacheServiceMock = new Mock<ICacheService<object>>();
         var cancellationToken = CancellationToken.None;
-        var cacheKeys = new[] { "cacheKey1", "cacheKey2", "cacheKey3" };
+        var cacheKeys = new[] {"cacheKey1", "cacheKey2", "cacheKey3"};
 
         // Act
         await cacheServiceMock.Object.RemoveCachesAsync(cancellationToken, cacheKeys);
 
         // Assert
-        foreach (var cacheKey in cacheKeys)
+        foreach (string cacheKey in cacheKeys)
         {
             cacheServiceMock.Verify(x => x.RemoveAsync(cacheKey, cancellationToken), Times.Once);
         }

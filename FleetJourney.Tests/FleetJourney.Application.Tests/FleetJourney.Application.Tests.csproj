@@ -27,11 +27,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Repositories\" />
-      <Folder Include="Services\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\..\FleetJourney.Application\FleetJourney.Application.csproj" />
     </ItemGroup>
 

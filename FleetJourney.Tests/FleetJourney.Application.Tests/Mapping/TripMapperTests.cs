@@ -2,6 +2,7 @@ using FleetJourney.Application.Contracts.Requests.Trips;
 using FleetJourney.Application.Contracts.Responses.Trips;
 using FleetJourney.Application.Mapping;
 using FleetJourney.Domain.Trips;
+using FluentAssertions;
 using Xunit;
 
 namespace FleetJourney.Application.Tests.Mapping;
@@ -25,7 +26,7 @@ public sealed class TripMapperTests
         var result = trip.ToResponse();
 
         // Assert
-        Assert.IsType<TripResponse>(result);
+        result.Should().BeOfType<TripResponse>();
     }
 
     [Fact]
@@ -45,7 +46,7 @@ public sealed class TripMapperTests
         var result = request.ToTrip();
 
         // Assert
-        Assert.IsType<Trip>(result);
+        result.Should().BeOfType<Trip>();
     }
 
     [Fact]
@@ -65,7 +66,7 @@ public sealed class TripMapperTests
         var result = request.ToTrip();
 
         // Assert
-        Assert.IsType<Trip>(result);
+        result.Should().BeOfType<Trip>();
     }
 
     [Fact]
@@ -86,7 +87,7 @@ public sealed class TripMapperTests
         var result = request.ToTrip(id);
 
         // Assert
-        Assert.Equal(id, request.Id);
-        Assert.IsType<Trip>(result);
+        request.Id.Should().Be(id);
+        result.Should().BeOfType<Trip>();
     }
 }
