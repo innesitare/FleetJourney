@@ -5,27 +5,20 @@ namespace FleetJourney.ApiGateway.Extensions;
 
 public static class JwtBearerExtensions
 {
-    public static IConfigurationBuilder AddJwtBearer(this IConfigurationBuilder config, WebApplicationBuilder builder)
+    public static IConfigurationBuilder AddJwtBearer(this IConfigurationBuilder configuration,
+        WebApplicationBuilder builder)
     {
         builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
+            .AddJwtBearer(options =>
             {
-                options.Authority = $"https://{builder.Configuration["Auth0:Domain"]}";
+                options.Authority = $"https://{builder.Configuration["Auth0:Domain"]}/";
+                options.Audience = builder.Configuration["Auth0:Audience"];
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
-                    ValidAudience = builder.Configuration["Auth0:Audience"],
-                    ValidIssuer = $"{builder.Configuration["Auth0:Domain"]}"
+                    ValidateAudience = true,
+                    ValidateIssuerSigningKey = true
                 };
             });
-
-        builder.Services.AddAuthorization(o =>
-        {
-            o.AddPolicy("fleetjourney:read-write",
-                policyBuilder =>
-                {
-                    policyBuilder.RequireAuthenticatedUser().RequireClaim("scope", "fleetjourney:read-write");
-                });
-        });
 
         return builder.Configuration;
     }

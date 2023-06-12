@@ -1,7 +1,7 @@
 ﻿using FleetJourney.Application.Contracts.Responses.Employees;
 using FluentValidation;
 
-namespace FleetJourney.Application.Validation.EmployeesValidation;
+namespace FleetJourney.Application.Validation.Employees;
 
 public sealed class EmployeeResponseValidator : AbstractValidator<EmployeeResponse>
 {

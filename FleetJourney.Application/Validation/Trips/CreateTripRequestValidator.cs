@@ -22,6 +22,5 @@ public sealed class CreateTripRequestValidator : AbstractValidator<CreateTripReq
         RuleFor(request => request.CarId)
             .NotEmpty()
             .WithMessage("Car ID is required.");
-
     }
 }

@@ -88,6 +88,8 @@ namespace FleetJourney.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasAlternateKey("Email");
+
                     b.HasIndex("Id")
                         .IsUnique();
 

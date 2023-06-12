@@ -12,7 +12,8 @@ builder.Host.UseSerilog((context, configuration) => configuration.ReadFrom.Confi
 builder.Configuration
     .AddJsonFile("ocelot.json", false, true)
     .AddAzureKeyVault()
-    .AddJwtBearer(builder);
+    .AddJwtBearer(builder)
+    .AddCors(builder);
 
 builder.Services
     .AddOcelot(builder.Configuration)
@@ -20,6 +21,8 @@ builder.Services
     .AddKubernetes();
 
 var app = builder.Build();
+
+app.UseCors();
 
 app.UseAuthentication();
 app.UseAuthorization();

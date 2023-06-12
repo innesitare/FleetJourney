@@ -46,7 +46,8 @@ public sealed class CachingEmployeeNotificationHandler :
 
         await _cacheService.RemoveCachesAsync(cancellationToken,
             CacheKeys.Employees.GetAll,
-            CacheKeys.Employees.Get(employeeId)
+            CacheKeys.Employees.Get(employeeId),
+            CacheKeys.Trips.GetAll
         );
     }
 }

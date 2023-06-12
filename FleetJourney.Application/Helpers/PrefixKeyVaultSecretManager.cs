@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace FleetJourney.Application.Helpers;
 
-internal sealed class PrefixKeyVaultSecretManager : KeyVaultSecretManager
+public sealed class PrefixKeyVaultSecretManager : KeyVaultSecretManager
 {
     private readonly string _prefix;
 

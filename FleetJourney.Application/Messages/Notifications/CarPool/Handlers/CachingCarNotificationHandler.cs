@@ -42,9 +42,10 @@ public sealed class CachingCarNotificationHandler :
     {
         var carId = notification.Id;
         
-        await _cacheService.RemoveCachesAsync(cancellationToken, 
+        await _cacheService.RemoveCachesAsync(cancellationToken,
             CacheKeys.CarPool.GetAll,
-            CacheKeys.CarPool.Get(carId)
+            CacheKeys.CarPool.Get(carId),
+            CacheKeys.Trips.GetAll
         );
     }
 }
