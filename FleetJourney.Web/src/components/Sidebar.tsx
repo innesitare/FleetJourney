@@ -79,7 +79,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             MENU
                         </h3>
                         <ul className="mb-6 flex flex-col gap-1.5">
-                            {/* <!-- Menu Item DashboardPage --> */}
+                            {/* <!-- Menu Item HomePage --> */}
                             <li>
                                 <NavLink
                                     to="/"
@@ -123,10 +123,10 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                                             </clipPath>
                                         </defs>
                                     </svg>
-                                    Dashboard
+                                    Home
                                 </NavLink>
                             </li>
-                            {/* <!-- Menu Item DashboardPage --> */}
+                            {/* <!-- Menu Item HomePage --> */}
 
                             {/* <!-- Menu Item EmployeesPage --> */}
                             <li>

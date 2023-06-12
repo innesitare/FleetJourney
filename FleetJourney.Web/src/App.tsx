@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import PageLoader from './components/PageLoader.tsx';
-import DashboardPage from './pages/DashboardPage.tsx';
+import HomePage from './pages/HomePage.tsx';
 import TripsPage from './pages/TripsPage.tsx';
 import EmployeesPage from "./pages/EmployeesPage.tsx";
 import CarPoolPage from "./pages/CarPoolPage.tsx";
@@ -13,7 +13,7 @@ const App: React.FC = () => {
 	return (
 		<PageLoader>
 			<Routes>
-				<Route path="/" element={<DashboardPage />} />
+				<Route path="/" element={<HomePage />} />
 				<Route path="/employees" element={<EmployeesPage />} />
 				<Route path="/cars" element={<CarPoolPage />} />
 				<Route path="/trips" element={<TripsPage />} />

@@ -16,7 +16,7 @@ class Breadcrumb extends Component<BreadcrumbProps> {
                 <nav>
                     <ol className="flex items-center gap-2">
                         <li>
-                            <Link to="/">Dashboard /</Link>
+                            <Link to="/">FleetJourney /</Link>
                         </li>
                         <li className="text-primary">{pageName}</li>
                     </ol>
