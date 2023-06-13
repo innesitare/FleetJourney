@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: employees-api
-          image: plaam/fleetjourney-employees-api:1.0.9
+          image: plaam/fleetjourney-employees-api:1.1.0
           imagePullPolicy: Always
           ports:
             - containerPort: 80

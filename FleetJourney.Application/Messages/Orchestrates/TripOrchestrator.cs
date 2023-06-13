@@ -1,4 +1,5 @@
-﻿using FleetJourney.Application.Services.Abstractions;
+﻿using FleetJourney.Application.Mapping;
+using FleetJourney.Application.Services.Abstractions;
 using FleetJourney.Domain.Messages.Trips;
 using FleetJourney.Domain.Trips;
 using MassTransit;
@@ -25,15 +26,7 @@ public sealed class TripOrchestrator :
         var message = context.Message;
         _logger.LogInformation("Creating trip for employee with Id: {EmployeeId}", message.EmployeeId);
 
-        var trip = new Trip
-        {
-            CarId = message.CarId,
-            StartMileage = message.StartMileage,
-            EndMileage = message.EndMileage,
-            IsPrivateTrip = message.IsPrivateTrip,
-            EmployeeId = message.EmployeeId,
-        };
-
+        var trip = message.ToTrip();
         await _tripService.CreateAsync(trip, context.CancellationToken);
     }
 

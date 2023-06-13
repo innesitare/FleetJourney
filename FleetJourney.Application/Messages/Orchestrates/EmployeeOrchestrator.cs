@@ -1,4 +1,5 @@
-﻿using FleetJourney.Application.Services.Abstractions;
+﻿using FleetJourney.Application.Mapping;
+using FleetJourney.Application.Services.Abstractions;
 using FleetJourney.Domain.EmployeeInfo;
 using FleetJourney.Domain.Messages.Employees;
 using MassTransit;
@@ -24,15 +25,8 @@ public sealed class EmployeeOrchestrator :
     {
         var message = context.Message;
         _logger.LogInformation("Creating employee with email: {Email}", message.Email);
-            
-        var employee = new Employee
-        {
-            Email = message.Email,
-            Name = message.Name,
-            LastName = message.LastName,
-            Birthdate = message.Birthdate
-        };
-            
+        
+        var employee = message.ToEmployee();
         await _employeeService.CreateAsync(employee, context.CancellationToken);
     }
 
