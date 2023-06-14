@@ -332,13 +332,12 @@ For authentication and accessing the Azure Key Vault in the project, these envir
 
 Use the following link to access the Docker images: https://hub.docker.com/u/plaam.
 
-Two versions of tags are available: 1.X.X and 2.X.X. Tags starting with 1.X.X are built for AMD64 architecture, whereas 2.X.X are used for ARM64.
+Two versions of tags are available: 1.X.X and 2.X.X. Tags starting with 1.X.X are built for AMD64 architecture, whereas 2.X.X are used for systems running on ARM64.
 
 ### Configuration settings:
 
 `AWS`: Login Credentials\
 `Redis`: Connection String\
-`Auth0:` Settings\
 `JWT`: Settings
 
 ### To deploy and delete the pods to Kubernetes, run the following command in the root folder:
