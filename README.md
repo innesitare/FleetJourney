@@ -40,7 +40,7 @@ public sealed class CreateEmployeeCommand : ICommand<bool>
     public Employee Employee { get; init; }
 }
 ```
-
+5
 ```csharp
 internal sealed class CreateEmployeeCommandHandler : ICommandHandler<CreateEmployeeCommand, bool>
 {
@@ -284,8 +284,41 @@ Two versions of tags are available: 1.X.X and 2.X.X. Tags starting with 1.X.X ar
 ### Configuration settings:
 
 `AWS`: Login Credentials\
-`FleetApplicationStore`: Connection String\
 `Redis`: Connection String\
 `Auth0:` Settings\
 `JWT`: Settings
 
+### To deploy and delete the pods to Kubernetes, run the following command in the root folder:
+
+
+1. Clone the repository from GitHub by executing the following command in your terminal:
+```
+git clone https://github.com/plaam/FleetJourney.git
+```
+
+2. Set up the required environment variables by creating a `.env` file for front-end and/or utilizing the Kubernetes secrets mechanism for back-end. 
+
+The specific variables needed for configuring FleetJourney can be found in the "Environment Variables" section of the project's documentation.
+
+3. Open a command prompt or terminal and navigate to the project root directory.
+
+4. Start the deployment of the microservices to Kubernetes by running the following command:
+```
+kubectl apply -R -f ./FleetJourney.Deploy
+```
+
+> Note: Please ensure that you have Kubernetes installed and configured properly on your local machine before running this command.
+
+
+5. If you want to delete all pods, you can execute the following command in your terminal:
+```
+kubectl delete -R -f ./FleetJourney.Deploy
+```
+
+This command will remove all deployed microservices and associated pods from your Kubernetes cluster.
+
+Additinally, don't forget that all requests should be made to the API Gateway, which will eventually redirect them to the appropriate controller.
+
+## FAQ
+
+## Contributing
