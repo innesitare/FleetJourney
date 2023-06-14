@@ -274,3 +274,18 @@ You must set up the following environment variables in your secrets in order to 
 `AZURE_VAULT_NAME`: The name of your Azure Key Vault.
 
 For authentication and accessing the Azure Key Vault in the project, these environment variables are required. Make sure to configure your secrets or environment such that the values of these variables are appropriate.
+
+### To run the application in Docker using K8s pods, follow these steps:
+
+Use the following link to access the Docker images: https://hub.docker.com/u/plaam.
+
+Two versions of tags are available: 1.X.X and 2.X.X. Tags starting with 1.X.X are built for AMD64 architecture, whereas 2.X.X are used for ARM64.
+
+### Configuration settings:
+
+`AWS`: Login Credentials\
+`FleetApplicationStore`: Connection String\
+`Redis`: Connection String\
+`Auth0:` Settings\
+`JWT`: Settings
+
