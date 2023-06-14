@@ -266,7 +266,9 @@ By leveraging Mapperly, we do benefit from automatic code generation for mapping
 
 ## Getting started
 
-You must set up the following environment variables in your secrets in order to run this project:
+### Environment variables
+
+You must set up the following in your secrets in order to run this project:
 
 `AZURE_CLIENT_ID`: The client ID of your Azure application.\
 `AZURE_CLIENT_SECRET`: The client secret of your Azure application.\
@@ -290,7 +292,6 @@ Two versions of tags are available: 1.X.X and 2.X.X. Tags starting with 1.X.X ar
 
 ### To deploy and delete the pods to Kubernetes, run the following command in the root folder:
 
-
 1. Clone the repository from GitHub by executing the following command in your terminal:
 ```
 git clone https://github.com/plaam/FleetJourney.git
@@ -298,7 +299,7 @@ git clone https://github.com/plaam/FleetJourney.git
 
 2. Set up the required environment variables by creating a `.env` file for front-end and/or utilizing the Kubernetes secrets mechanism for back-end. 
 
-The specific variables needed for configuring FleetJourney can be found in the "Environment Variables" section of the project's documentation.
+> Note: Needed variables for configuring the project can be found in the "Environment Variables" section of the documentation.
 
 3. Open a command prompt or terminal and navigate to the project root directory.
 
@@ -317,7 +318,21 @@ kubectl delete -R -f ./FleetJourney.Deploy
 
 This command will remove all deployed microservices and associated pods from your Kubernetes cluster.
 
-Additinally, don't forget that all requests should be made to the API Gateway, which will eventually redirect them to the appropriate controller.
+**Additionally, don't forget that all requests should be made to the API Gateway, which will eventually redirect them to the appropriate controller**.
+
+## Postman Configuration
+
+You will find the Postman collections file in specific directory `FleetJourney.PostmanConfiguration`. These files contain three collections of API endpoints and associated requests that can be imported into Postman for testing and interacting with FleetJourney's APIs.
+
+To import the Postman collection:
+
+1. Launch Postman.
+2. Click on the "Import" button located in the top-left corner.
+3. Select the option to "Import File" and choose the "FleetJourney.PostmanConfiguration.postman_collection.json" specific file from the directory.
+4. Postman will import the selected collection, and you will be able to see the available requests and their associated details.
+
+
+After importing the collection, you can explore the endpoints, customize the request parameters, and execute the requests against FleetJourney's APIs directly from Postman. This enables you to easily test and interact with the functionality provided by the project.
 
 ## FAQ
 
