@@ -6,6 +6,10 @@ The application itself showcases the front-end and back-end combination that use
 
 I do welcome everybody's involvement in this project, where developers can explore and contribute to cutting-edge technologies and best practices in software development.
 
+# Frontend implementation
+
+...
+
 # Backend implementation
 
 ## Clean Architecture principles 
@@ -266,7 +270,7 @@ By leveraging Mapperly, we do benefit from automatic code generation for mapping
 
 ## Getting started
 
-### Environment variables
+### Environment variables:
 
 You must set up the following in your secrets in order to run this project:
 
@@ -310,7 +314,6 @@ kubectl apply -R -f ./FleetJourney.Deploy
 
 > Note: Please ensure that you have Kubernetes installed and configured properly on your local machine before running this command.
 
-
 5. If you want to delete all pods, you can execute the following command in your terminal:
 ```
 kubectl delete -R -f ./FleetJourney.Deploy
@@ -334,6 +337,8 @@ To import the Postman collection:
 
 After importing the collection, you can explore the endpoints, customize the request parameters, and execute the requests against FleetJourney's APIs directly from Postman. This enables you to easily test and interact with the functionality provided by the project.
 
-## FAQ
-
 ## Contributing
+
+Please be sure to adhere to the project's code style and current patterns. Create an issue and seek for assistance if you're unsure about something.
+
+Additionally, I advise creating a pull request to discuss your implemented changes and adjustments so I can ensure that your work is in keeping with the objectives and course of the project.
