@@ -171,10 +171,106 @@ Since the business logic doesn't require any state tracking, it makes no sense t
 
 This helps in abstracting the data access layer from the rest of the application. It provides a consistent interface for interacting with data, enabling easier database operations.
 
+In the provided code snippet, there is a definition of the `IRepository<TEntity, TKey>` interface, which serves as the main template for repository APIs.
+
+```csharp
+public interface IRepository<TEntity, in TKey>
+    where TEntity : class
+{
+    Task<IEnumerable<TEntity>> GetAllAsync(CancellationToken cancellationToken);
+
+    Task<TEntity?> GetAsync(TKey key, CancellationToken cancellationToken);
+
+    Task<bool> CreateAsync(TEntity entity, CancellationToken cancellationToken);
+
+    Task<TEntity?> UpdateAsync(TEntity entity, CancellationToken cancellationToken);
+
+    Task<bool> DeleteAsync(TKey key, CancellationToken cancellationToken);
+}
+```
+
+By implementing the `IRepository<TEntity, TKey>` interface, you can create concrete repository classes that provide the actual implementation for interacting with a specific data storage mechanism, such as a database
+
+---
+
+### Caching service
+
+All the APIs have implemented services that work with repositories. Additionally, they are all managing caching via `ICacheService` in FleetJourney.Application.
+
+As an example, there's one of many service methods that directly fetches all the Employees via `IEmployeeRepository`. Caching itself is implemented via Mediator Notifications handling.
+
+```csharp
+public Task<IEnumerable<Employee>> GetAllAsync(CancellationToken cancellationToken)
+{
+    return _cacheService.GetAllOrCreateAsync(CacheKeys.Employees.GetAll, async () =>
+    {
+        var employees = await _sender.Send(new GetAllEmployeesQuery(), cancellationToken);
+
+        return employees;
+    }, cancellationToken);
+}
+```
+
+---
+
 ### Scrutor 
 
 The library itself provides a substantial opportunity to register services in DI containers using assembly scanning and reflection.
 
+In our case, I have implemented a service registration via creating an extension method that wraps up the Scrutor methods.
+
+```csharp
+public static IServiceCollection AddApplicationService<TInterface>(
+    this IServiceCollection services,
+    ServiceLifetime serviceLifetime = ServiceLifetime.Scoped)
+{
+    services.Scan(scan => scan
+        .FromAssemblyOf<TInterface>()
+        .AddClasses(classes =>
+        {
+            classes.AssignableTo<TInterface>()
+                .WithoutAttribute<CachingDecorator>();
+        })
+        .AsImplementedInterfaces()
+        .WithLifetime(serviceLifetime));
+
+    return services;
+}
+```
+
+Afterwards, whenever an interface is parsed to the extension method as a parameter, Scrutor scans all classes from its assembly and implements each of the derived classes as an implementation.
+
+```csharp
+builder.Services.AddApplicationService<IEmployeeRepository>();
+```
+
+---
+
 ### Mapping via Mapperly
 
-.
+Firstly, all the contract mapping was implemented by myself without using any of external libraries. As for now, I have decided to move to using Mapperly. 
+
+This is a a source generator for generating object mappings. It creates the mapping code at **build time**, so there is minimal overhead at runtime.
+
+```csharp
+[Mapper]
+public static partial class EmployeeMapper
+{
+    public static partial EmployeeResponse ToResponse(this Employee employee);
+
+    ...
+}
+```
+
+By leveraging Mapperly, we do benefit from automatic code generation for mapping operations, reducing the manual effort required to write and maintain mapping code.
+
+## Getting started
+
+You must set up the following environment variables in your secrets in order to run this project:
+
+<br>`AZURE_CLIENT_ID`: The client ID of your Azure application.</br>
+<br>`AZURE_CLIENT_SECRET`: The client secret of your Azure application.</br>
+<br>`AZURE_TENANT_ID`: The ID of your Azure tenant.</br>
+<br>`AZURE_VAULT_NAME`: The name of your Azure Key Vault.</br>
+
+For authentication and accessing the Azure Key Vault in the project, these environment variables are required. Make sure to configure your secrets or environment such that the values of these variables are appropriate.
