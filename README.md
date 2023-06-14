@@ -44,7 +44,6 @@ public sealed class CreateEmployeeCommand : ICommand<bool>
     public Employee Employee { get; init; }
 }
 ```
-5
 ```csharp
 internal sealed class CreateEmployeeCommandHandler : ICommandHandler<CreateEmployeeCommand, bool>
 {
@@ -83,7 +82,6 @@ public sealed class GetEmployeeByEmailQuery : IQuery<Employee?>
     public string Email { get; init; }
 }
 ```
-
 ```csharp
 internal sealed class GetEmployeeByEmailQueryHandler : IQueryHandler<GetEmployeeByEmailQuery, Employee?>
 {
