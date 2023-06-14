@@ -271,6 +271,6 @@ You must set up the following environment variables in your secrets in order to 
 `AZURE_CLIENT_ID`: The client ID of your Azure application.\
 `AZURE_CLIENT_SECRET`: The client secret of your Azure application.\
 `AZURE_TENANT_ID`: The ID of your Azure tenant.\
-`AZURE_VAULT_NAME`: The name of your Azure Key Vault.\
+`AZURE_VAULT_NAME`: The name of your Azure Key Vault.
 
 For authentication and accessing the Azure Key Vault in the project, these environment variables are required. Make sure to configure your secrets or environment such that the values of these variables are appropriate.
