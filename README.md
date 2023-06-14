@@ -193,7 +193,7 @@ By implementing the `IRepository<TEntity, TKey>` interface, you can create concr
 
 ---
 
-### Caching service
+### Service methods & caching
 
 All the APIs have implemented services that work with repositories. Additionally, they are all managing caching via `ICacheService` in FleetJourney.Application.
 
