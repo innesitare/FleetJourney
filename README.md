@@ -8,7 +8,56 @@ I do welcome everybody's involvement in this project, where developers 
 
 # Frontend implementation
 
-...
+As for the frontend part, the simple dashboard was implemented using React.ts. Logic is being separated and needed data is being fetched using services. Requests are basically being sent to API backend gateway, and then the responses are being deserialized and used to fill out the React pages.
+
+Vite.js is used as a build tool that aims to improve the developer experience for development with the local machine, and for the build of optimized assets for production.
+
+### Environment varibles
+
+`REACT_APP_AUTH0_DOMAIN`: The domain where your Auth0 account is hosted.\
+`REACT_APP_AUTH0_CALLBACK_URL`: The callback URL that Auth0 redirects to after the user performs any of authentication-related actions.\
+`REACT_APP_AUTH0_CLIENT_ID`: The client ID of your Auth0 application.\
+`REACT_APP_AUTH0_AUDIENCE`: The audience value for your Auth0 application.\
+`REACT_APP_API_SERVER_URL`: The representation of the URL of application's server-side API.\
+
+Make sure to provide the necessary configuration values either through the .env file or by setting the corresponding environment variables.
+
+### Getting started
+
+To run the frontend of FleetJourney, please follow these step-by-step instructions:
+
+1. Open a terminal or command prompt.
+
+2. Navigate to the `FleetJourney.Web` directory in the project using the `cd` command in project root folder:
+```
+cd FleetJourney.Web
+```
+
+3. Install the required packages by running the following command:
+```
+npm install
+```
+
+This command will fetch all the necessary packages and dependencies specified in the `package.json` file.
+
+4. (Optional) If you want to update the installed libraries to their latest versions, you can run:
+```
+npm update
+```
+
+This command will update the libraries if there are newer versions available.
+
+5. To run the frontend, execute the following script:
+```
+npm run build
+```
+
+This command will build the frontend assets and start the frontend server.
+
+6. If you have made any changes to ports or related path data, make sure to update the `vite.config.js` file accordingly. This file contains the configuration for the frontend, including the localhost port on which it will run.
+
+> Note: By default, the frontend runs on `localhost:4040`.
+
 
 # Backend implementation
 
