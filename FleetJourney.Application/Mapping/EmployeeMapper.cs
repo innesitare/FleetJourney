@@ -1,6 +1,7 @@
 ﻿using FleetJourney.Application.Contracts.Requests.Employees;
 using FleetJourney.Application.Contracts.Responses.Employees;
 using FleetJourney.Domain.EmployeeInfo;
+using FleetJourney.Domain.Messages.Employees;
 using Riok.Mapperly.Abstractions;
 
 namespace FleetJourney.Application.Mapping;
@@ -13,6 +14,8 @@ public static partial class EmployeeMapper
     public static partial Employee ToEmployee(this CreateEmployeeRequest request);
     
     public static partial Employee ToEmployee(this UpdateEmployeeRequest request);
+    
+    public static partial Employee ToEmployee(this CreateEmployee message);
 
     public static Employee ToEmployee(this UpdateEmployeeRequest request, Guid id)
     {

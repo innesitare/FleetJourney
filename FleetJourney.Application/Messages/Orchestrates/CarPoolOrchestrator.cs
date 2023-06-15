@@ -1,4 +1,5 @@
-﻿using FleetJourney.Application.Services.Abstractions;
+﻿using FleetJourney.Application.Mapping;
+using FleetJourney.Application.Services.Abstractions;
 using FleetJourney.Domain.CarPool;
 using FleetJourney.Domain.Messages.CarPool;
 using MassTransit;
@@ -24,17 +25,8 @@ public sealed class CarPoolOrchestrator :
     {
         var message = context.Message;
         _logger.LogInformation("Creating car with number: {Id}", message.LicensePlateNumber);
-
-        var car = new Car
-        {
-            LicensePlateNumber = message.LicensePlateNumber,
-            Brand = message.Brand,
-            Model = message.Model,
-            EndOfLifeMileage = message.EndOfLifeMileage,
-            MaintenanceInterval = message.MaintenanceInterval,
-            CurrentMileage = message.CurrentMileage
-        };
         
+        var car = message.ToCar();
         await _carPoolService.CreateAsync(car, context.CancellationToken);
     }
 

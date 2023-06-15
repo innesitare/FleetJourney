@@ -1,6 +1,7 @@
 ﻿using FleetJourney.Application.Contracts.Requests.CarPool;
 using FleetJourney.Application.Contracts.Responses.CarPool;
 using FleetJourney.Domain.CarPool;
+using FleetJourney.Domain.Messages.CarPool;
 using Riok.Mapperly.Abstractions;
 
 namespace FleetJourney.Application.Mapping;
@@ -13,6 +14,8 @@ public static partial class CarPoolMapper
     public static partial Car ToCar(this CreateCarRequest request);
 
     public static partial Car ToCar(this UpdateCarRequest request);
+
+    public static partial Car ToCar(this CreateCar message);
 
     public static Car ToCar(this UpdateCarRequest request, Guid carId)
     {

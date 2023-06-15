@@ -1,5 +1,6 @@
 ﻿using FleetJourney.Application.Contracts.Requests.Trips;
 using FleetJourney.Application.Contracts.Responses.Trips;
+using FleetJourney.Domain.Messages.Trips;
 using FleetJourney.Domain.Trips;
 using Riok.Mapperly.Abstractions;
 
@@ -13,6 +14,8 @@ public static partial class TripMapper
     public static partial Trip ToTrip(this CreateTripRequest request);
     
     public static partial Trip ToTrip(this UpdateTripRequest request);
+    
+    public static partial Trip ToTrip(this CreateTrip message);
 
     public static Trip ToTrip(this UpdateTripRequest request, Guid id)
     {
