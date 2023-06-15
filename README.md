@@ -244,7 +244,7 @@ By implementing the `IRepository<TEntity, TKey>` interface, you can create concr
 
 ---
 
-### Service methods & caching
+### APIs Service methods & Caching
 
 All the APIs have implemented services that work with repositories. Additionally, they are all managing caching via `ICacheService` in FleetJourney.Application.
 
@@ -260,6 +260,38 @@ public Task<IEnumerable<Employee>> GetAllAsync(CancellationToken cancellationTok
         return employees;
     }, cancellationToken);
 }
+```
+
+---
+
+### Authentication & Authorization
+
+The workflow itself focuses on the authentication process and the interaction with an external APIs of the application. 
+
+The `Employee` initiates the process by sending a request to the `OcelotAPIGateway`, which then routes the request to `Auth0` for authentication. Depending on whether it's a registration or login workflow, `Auth0` registers or logs in the employee, and the `OcelotAPIGateway` responds to the `Employee` with a success message or an error. Once authenticated, the `Employee` can send requests to the external application APIs through the `OcelotAPIGateway`, which forwards the requests and returns the responses back to the `Employee`.
+
+```mermaid
+sequenceDiagram
+    participant Employee
+    participant OcelotAPIGateway
+    participant Auth0
+    participant ExternalAPI
+
+    Employee->>OcelotAPIGateway: Send request
+    OcelotAPIGateway->>Auth0: Route request for authentication
+
+    alt Registration Workflow
+        Auth0-->>OcelotAPIGateway: Register employee
+        OcelotAPIGateway-->>Employee: Respond with success message or error
+    else Login Workflow
+        Auth0-->>OcelotAPIGateway: Log in employee
+        OcelotAPIGateway-->>Employee: Respond with success message or error
+    end
+
+    Employee->>OcelotAPIGateway: Send request to external API
+    OcelotAPIGateway->>ExternalAPI: Forward request
+    ExternalAPI-->>OcelotAPIGateway: Return response
+    OcelotAPIGateway-->>Employee: Return response from external API
 ```
 
 ---
