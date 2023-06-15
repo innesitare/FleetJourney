@@ -268,7 +268,9 @@ public Task<IEnumerable<Employee>> GetAllAsync(CancellationToken cancellationTok
 
 The workflow itself focuses on the authentication process and the interaction with an external APIs of the application. 
 
-The `Employee` initiates the process by sending a request to the `OcelotAPIGateway`, which then routes the request to `Auth0` for authentication. Depending on whether it's a registration or login workflow, `Auth0` registers or logs in the employee, and the `OcelotAPIGateway` responds to the `Employee` with a success message or an error. Once authenticated, the `Employee` can send requests to the external application APIs through the `OcelotAPIGateway`, which forwards the requests and returns the responses back to the `Employee`.
+The `Employee` initiates the process by sending a request to the `OcelotAPIGateway`, which then routes the request to `Auth0` for authentication. Depending on whether it's a registration or login workflow, `Auth0` registers or logs in the employee, and the `OcelotAPIGateway` responds to the `Employee` with a success message or an error. 
+
+Once authenticated, the `Employee` can send requests to the external application APIs through the `OcelotAPIGateway`, which forwards the requests and returns the responses back to the `Employee`.
 
 ```mermaid
 sequenceDiagram
